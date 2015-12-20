@@ -6,9 +6,9 @@ window.onload = function(){
 	var next = $("#next");
 	var now_angle = 0;
 	var next_angle = 90;
-	cur.bind('webkitTransitionEnd', function() {
-		alert(1);
-	});
+	// cur.bind('webkitTransitionEnd', function() {
+	// 	alert(1);
+	// });
 	btn.bind('click',function(){
 		if (status) {
 			now_angle -=270;
@@ -32,7 +32,7 @@ window.onload = function(){
 			cur.html(num+1);
 	  		next.html(num+1);
 	  		num++;
-		},500);
+		},600);
 	  	
 	});
 }
