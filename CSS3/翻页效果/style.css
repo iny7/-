@@ -1,0 +1,53 @@
+html, body, div, span,h1, h2, h3, h4, h5, h6, p, a, img, ol, ul, li
+{
+    margin:0;padding:0;border:0;outline:0;
+}
+#btn{
+	display: block;
+	margin:0 auto;
+	width: 120px;
+	height: 40px;
+	font-size: 30px;
+}
+
+#my_3d_space{
+	border: 1px solid red;
+	margin:50px 200px;
+	height: 300px;
+	/*由于css3中设置overflow-x会影响overflow-y的坑 
+		这里使用内盒子左边紧贴外盒子,上下留空隙,
+		外盒子overflow:hidden的方式来隐藏左边超出部分*/
+	-webkit-perspective: 800;
+	-webkit-perspective-origin:50% 50%;
+	overflow: hidden;
+}
+#box{
+	height: 200px;
+	width: 200px;
+	margin-top:50px;
+	border: 1px solid blue;
+	position: relative;
+	-webkit-transform-style: preserve-3d;
+}
+.page{
+	position: absolute;
+	border: 2px solid yellow;
+	width: 160px;
+	height: 160px;
+	padding: 20px;
+	background-color: #000;
+	color: #FFF;
+	font-size: 160px;
+	line-height: 160px;
+	text-align: center;
+	-webkit-transform-origin: left;
+}
+#current{
+	-webkit-transition: -webkit-transform 3s linear;
+    -webkit-transform: rotateY(0deg);
+}
+#next{
+	-webkit-transition: -webkit-transform 1s linear;
+	-webkit-transform: rotateY(90deg);
+	
+}
