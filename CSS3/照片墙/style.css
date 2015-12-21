@@ -1,0 +1,39 @@
+*{
+	margin:0;
+	padding: 0;
+}
+h1{
+	display: block;
+	width: 100px;
+	margin:10px auto;
+}
+a{
+	display: block;
+	width: 80px;
+	margin:0 auto;
+	color: #900;
+	text-decoration: none;
+	font-size: 20px;
+}
+#wrap{
+	width: 800px;
+	height: 500px;
+	margin:0 auto;
+	left:-100px;
+	position: relative;
+}
+img{
+	position: absolute;
+	background-color: #FFF;
+	padding: 10px;
+	border: 1px solid #DDD;
+	transform: rotate(45deg);
+	-webkit-transform: rotate(20deg);
+	transition: transform .5s ease-out;
+}
+img:hover{
+	transform: rotate(0deg) !important;
+	transform: scale(1.3);
+	box-shadow: 5px 5px 10px #CCC,-5px -5px 10px #CCC;
+	z-index: 10;
+}
