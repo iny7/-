@@ -1,0 +1,230 @@
+body{
+	/*overflow: hidden;*/
+	min-width: 1200px;
+	min-height: 800px;
+	background-color:#ccc;
+	font-family: "Microsoft Yahei";
+}
+.wrap{
+	/*撑起来*/
+	position:absolute;
+	width:1200px;
+	height:600px;
+	/*做居中*/
+	left:50%;
+	top:50%;
+	margin-left: -600px;
+	margin-top: -300px;
+	/*transform: translate(-50%, -50%);*/
+	/*设置背景*/
+	padding:10px;
+	background:#FFF url("img/bg.jpg") no-repeat;
+	background-position:center center;
+	/*设置边框和阴影*/
+	border-radius: 5px;
+	box-shadow:0 0 30px 3px #222;
+}
+.text{
+	position: absolute;
+	width: 400px;
+	height: 240px;
+	left: 100px;
+	top:90px;
+	font-size: 20px;
+}
+.wish{
+	width: 400px;
+	height: 240px;
+	background: url("img/caption.png") no-repeat;
+}
+.content{
+	text-indent: 2em;
+	/*技巧 刚开始未设置宽度时候，字体块的宽度是自适应的，
+	在动画产生的过程中，每行的字数会因为margin-left的变化
+	而改变，可以尝试去掉下面这行看看	*/
+	width: 400px;
+
+}
+.from{
+	text-align: right;
+}
+/*动画相关*/
+.text>div,.text>p{
+	margin-left: 40px;
+	opacity: 0;
+}
+.text-in>div,.text-in>p{
+	opacity: 1;
+	margin-left: 0;
+}
+.text-in .wish{
+	-webkit-transition: all 1s;
+}
+.text-in .to{
+	-webkit-transition: all 1s 0.5s;
+}
+.text-in .content{
+	-webkit-transition: all 1s 1s;
+}
+.text-in .from{
+	-webkit-transition: all 1s 1.5s;
+}
+.zz-box{
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	top: 160px;
+	right: 150px;
+	-webkit-animation: rock 0.3s infinite alternate;
+}
+.zz-box:hover{
+	-webkit-animation: none;
+}
+.leaf,.zzr,.line,.font{
+	position: absolute;
+}
+.zz-run{
+	-webkit-animation: none;	
+}
+/*绳子有关样式*/
+.line{
+	z-index: 20;
+	width: 218px;
+	height: 180px;
+	left: 10px;
+	top: 117px;
+	background: url("img/line_1.png") no-repeat;
+	/*-webkit-transition: opacity 0.5s;*/
+}
+/*绳子动画*/
+.zz-run .line{
+	-webkit-animation: untie 2s .5s;
+	/*技巧:一定要注意使用简写会覆盖单写的属性，比如这里，
+	fill-mode就一定要写到下面！不然无效*/
+	-webkit-animation-fill-mode: forwards;
+}
+
+/*叶子有关样式*/
+.leaf{
+	z-index: 20;
+}
+.zz{
+	width: 312px;
+	height: 305px;
+	background: url("img/zz.png");
+}
+.leaf-left{
+	width: 127px;
+	height: 266px;
+	left: -30px;
+	top: -10px;
+	background-image: url("img/leaf_left.png");
+	/*左叶子初始状态是合拢*/
+	opacity: 0;
+	transform: rotate(30deg);
+	transform-origin: right bottom;
+	transition: all 1s 3s;
+	/*transition: transform 1s 3s,opacity 1s 3s;*/
+	/*transition-property: transform,opacity;
+	transition-delay: 1s,1s;
+	transition-duration: 3s,4s;*/
+
+}
+.leaf-right{
+	width: 318px;
+	height: 338px;
+	left: 34px;
+	top: -10px;
+	background-image: url("img/leaf_right.png");
+	/*右叶子初始状态是合拢*/
+	opacity: 0;
+	transform-origin: 70% bottom;
+	transition: all 1s 3s;
+}
+.leaf-expand{
+	width: 618px;
+	height: 464px;
+	left: -170px;
+	top: 10px;
+	z-index: 0;
+	background-image: url("img/leaf_expand.png");
+	/*右叶子初始状态是合拢*/
+	opacity: 0;
+	transition: all 1s 4.5s;
+}
+/*叶子动画*/
+.zz-run .zz{
+	-webkit-animation: leaf 1s 2s;
+	-webkit-animation-fill-mode: forwards;
+}
+.zz-run .leaf-left{
+	-webkit-animation: leaf-left 2s 2s;
+}
+.zz-run .leaf-right{
+	-webkit-animation: leaf-right 2s 2s;
+}
+.zz-run .leaf-expand{
+	-webkit-animation: leaf-bottom 2s 2.2s;
+	-webkit-animation-fill-mode: forwards;
+}
+.font{
+	z-index: 11;
+}
+
+/*粽子肉样式*/
+.zzr{
+	opacity: 0;
+	transform: scale(0.4);
+	transition: all 1s 2s;
+	z-index: 10;
+}
+/*粽子肉动画*/
+.zz-run .zzr{
+	width: 282px;
+	height: 206px;
+	left: 8px;
+	top: 88px;
+	background-image: url("img/zzr_1.png");
+	opacity: 1;
+	transform: scale(1);
+	-webkit-animation: zzr 3s 2s infinite;
+}
+/*粽子字样式*/
+.haoyun{
+	width: 180px;
+	height: 100px;
+	left:55px;
+	top: 152px;
+	background-image: url("img/t_haoyun.png");
+	/*transition: transform 0.1s,opacity 0.001s;*/
+}
+.jixiang{
+	width: 180px;
+	height: 100px;
+	left:55px;
+	top: 152px;
+	background-image: url("img/t_jixiang.png");
+}
+.ruyi{
+	width: 180px;
+	height: 100px;
+	left:55px;
+	top: 152px;
+	background-image: url("img/t_ruyi.png");
+}
+.xingfu{
+	width: 180px;
+	height: 100px;
+	left:55px;
+	top: 152px;
+	background-image: url("img/t_xingfu.png");
+}
+.zz-run .haoyun{
+	-webkit-animation: font 9s 2s infinite;
+}
+.zz-run .jixiang{
+	-webkit-animation: font 9s -1s infinite;
+}
+.zz-run .ruyi{
+	-webkit-animation: font 9s -4s infinite;
+}

@@ -1,0 +1,171 @@
+/*抖动动画*/
+@-webkit-keyframes rock{
+	0%{
+		transform: rotate(-5deg);
+	}
+	50%{
+		transform: rotate(0deg);	
+	}
+	100%{
+		transform: rotate(5deg);
+	}
+}
+/*绳子动画*/
+@-webkit-keyframes untie{
+	0%{
+
+	}
+	30%{
+		width: 219px;
+		height: 159px;
+		left:7px;
+		top: 152px;
+		background: url("img/line_2.png") no-repeat;
+	}
+	60%{
+		/*opacity: 1;*/
+		width: 264px;
+		height: 117px;
+		left:7px;
+		top: 222px;
+		background: url("img/line_3.png") no-repeat;
+	}
+	99%{
+		/*opacity: 1;*/
+		width: 288px;
+		height: 56px;
+		/*border: 3px solid red;*/
+		left:14px;
+		top: 284px;
+		background: url("img/line_4.png") no-repeat;
+	}
+	100%{
+		background: none;
+	}
+}
+/*外面叶子动画*/
+@-webkit-keyframes leaf{
+	50%{
+		transform: scale(0.8);
+	}
+	100%{
+		transform: scale(0.7);
+		opacity: 0;
+	}
+}
+/*左叶子动画*/
+@-webkit-keyframes leaf-left{
+	50%{
+		opacity: 0.7;
+	}
+	
+	100%{
+		left:-10px;
+		opacity: 0;
+		transform: rotate(-40deg);
+	}
+}
+/*右叶子动画*/
+@-webkit-keyframes leaf-right{
+	50%{
+		opacity: 0.7;
+	}
+	
+	100%{
+		opacity: 0;
+		transform: rotate(40deg);
+	}
+}
+/*底叶子动画*/
+@-webkit-keyframes leaf-bottom{
+	30%{
+		opacity: 0;
+		transform: scale(0.9);
+	}
+	100%{
+		opacity: 1;
+	}
+}
+/*粽子肉动画*/
+@-webkit-keyframes zzr{
+	0%{
+		width: 282px;
+		height: 206px;
+		left: 8px;
+		top: 88px;
+		background-image: url("img/zzr_1.png");
+	}
+	25%{
+		width: 273px;
+		height: 234px;
+		left: 8px;
+		top: 88px;
+		background-image: url("img/zzr_2.png");	
+	}
+	50%{
+		width: 267px;
+		height: 239px;
+		left: 8px;
+		top: 88px;
+		background-image: url("img/zzr_3.png");
+	}
+	75%{
+		width: 273px;
+		height: 237px;
+		left: 8px;
+		top: 88px;
+		background-image: url("img/zzr_4.png");
+	}
+	100%{
+		width: 282px;
+		height: 206px;
+		left: 8px;
+		top: 88px;
+		background-image: url("img/zzr_1.png");
+	}
+}
+@-webkit-keyframes font{
+	0%{
+		transform: none;
+	}
+	8%{
+		transform: translate(-30px,0) scale(0.8) rotate(30deg) rotateY(30deg);
+		
+	}
+	16%{
+		transform: translate(-50px,0) scale(0.7) rotate(45deg) rotateY(45deg);
+		
+	}
+	25%{
+		opacity: 1;
+		transform: translate(-60px,0) scale(0.5) rotate(60deg) rotateY(45deg);		
+	}
+	33%{
+		opacity: 0;
+		transform: translate(-60px,0) scale(0) rotate(60deg) rotateY(90deg);		
+	}
+	42%{
+		transform: translate(-60px,0) scale(0) rotate(60deg) rotateY(90deg);
+	}
+	50%{
+		transform: translate(-60px,0) scale(0) rotate(60deg) rotateY(-90deg);
+	}
+	66%{
+		/*绕后*/
+		transform: translate(40px,0) scale(0.3) rotate(-60deg) rotateY(-90deg);	
+	}
+	75%{
+		transform: translate(60px,0) scale(0.5) rotate(-50deg) rotateY(-60deg);	
+	}
+	83%{
+		transform: translate(50px,0) scale(0.6) rotate(-40deg) rotateY(-45deg);	
+	}
+	92%{
+		/*opacity: 0;*/
+		transform: translate(30px,0) scale(0.8) rotate(-30deg) rotateY(-30deg);
+	}
+	100%{
+		/*opacity: 1;*/
+		transform: none;	
+	}
+}
