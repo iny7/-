@@ -1,0 +1,30 @@
+#boy{
+	position: absolute;
+	width: 150px;
+	height: 291px;
+	left: 10%;
+	bottom: 15%;
+	border: 2px solid red;
+	background-image: url(../images/boy.png);
+	background-position: 0 291px; 
+	transition: all 10s;
+	
+	/*transform: scale(0.5);*/
+	-webkit-animation: boyWalk 1s .2s steps(1,start) infinite;
+}
+@-webkit-keyframes boyWalk{
+	/*0%{
+	}*/
+	25%{
+		background-position: -600px 0;
+	}
+	50%{
+		background-position: -300px -291px; 
+	}
+	75%{
+		background-position: -150px -291px;
+	}
+	/*100%{
+		background-position: 0 -291px; 
+	}*/
+}
