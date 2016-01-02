@@ -1,20 +1,24 @@
-#boy{
+.boy{
 	position: absolute;
 	width: 150px;
 	height: 291px;
-	left: 10%;
+	left: -10%;
 	bottom: 15%;
-	border: 2px solid red;
+	border: 1px solid red;
 	background-image: url(../images/boy.png);
-	background-position: 0 291px; 
+	background-position: 0 -291px; 
 	transition: all 10s;
-	
-	/*transform: scale(0.5);*/
-	-webkit-animation: boyWalk 1s .2s steps(1,start) infinite;
+	-webkit-animation: walk 1s 0.2s steps(1,start) infinite;
+	/*-webkit-animation-fill-mode: backwards;*/
 }
-@-webkit-keyframes boyWalk{
-	/*0%{
-	}*/
+.withFlower{
+	background-position: -300px 0;
+	-webkit-animation: walkWithFlower 1s steps(1,start) infinite;
+}
+@-webkit-keyframes walk{
+	0%{
+		/*background-position: 0 291px; */
+	}
 	25%{
 		background-position: -600px 0;
 	}
@@ -24,7 +28,39 @@
 	75%{
 		background-position: -150px -291px;
 	}
-	/*100%{
+	100%{
 		background-position: 0 -291px; 
-	}*/
+	}
 }
+@-webkit-keyframes walkWithFlower{
+	0%{
+		/*background-position: -300px 0;*/
+	}
+	25%{
+		background-position: -900px 0;
+	}
+	50%{
+		background-position: -450px 0px; 
+	}
+	75%{
+		background-position: -750px 0px;
+	}
+	100%{
+		background-position: -300px 0;
+	}
+}
+
+/*废弃代码
+@-webkit-keyframes enter{
+	50%{*/
+		/*这样粗暴地改变transform属性会影响到js代码中
+		利用transform实现的男孩移动,所以直接用js控制
+		缩放,而用css3动画控制透明度*/
+		/*transform: scale(0.5);*/
+
+		/*发现用animation实现进门的话,添加classname的时间
+		(男孩缩小后)和改变透明度的时间(缩小前)在逻辑上不太合.
+		而且改变classname的同时应该给男孩加花,这一动作也在
+		改变透明度之后,索性在js中直接使用定时器控制透明度*/
+		/*opacity: 0;
+}*/
