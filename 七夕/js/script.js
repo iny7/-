@@ -23,65 +23,66 @@ window.onload = function(){
 	3.用js写一个事件队列（粽子课程里有）
 	4.监听transitionend等定义好的事件
 	5.用js写实现观察者模式*/
-
+	boy.walk(2,0.5);
+	
 	//这里暂且使用方法4实现,后面再有 尝试用3和5
 	/*使用后发现事件监听有一定的局限性,因为事件只能触发一次
 	而绑定好的事件将重复触发*/
 	//transitionend这个事件很有用
 
-	var walk1 = function(){
-		console.log("walk1");
-		boy.walk(3,0.6);
-		boy.addEventListener("transitionend",roll1);
-	}
-	var roll1 = function(){
-		console.log("roll1");
+	// var walk1 = function(){
+	// 	console.log("walk1");
+	// 	boy.walk(3,0.6);
+	// 	boy.addEventListener("transitionend",roll1);
+	// }
+	// var roll1 = function(){
+	// 	console.log("roll1");
 		
-		boy.removeEventListener("transitionend",roll1);
-		container.addEventListener("transitionend",inShop);
+	// 	boy.removeEventListener("transitionend",roll1);
+	// 	container.addEventListener("transitionend",inShop);
 		
-		/*注意这里男孩走一定要比背景滚动先完成,否则,先完成的画面滚动
-		会触发shop时间,然后为男孩添加事件监听,这样男孩就会多次walk2
-		*/
-		boy.walk(2,0.5);
-		roll(container,2,3);
-	}
-	var inShop = function(){
-		/*	这里进出门共有4段动画,打印四次就很烦,
-		所以把进出门分成两个函数
-		结果发现每个函数里还有两段动画,不好监听*/
-		console.log("in shop");
-		container.removeEventListener("transitionend",inShop);
-		boy.addEventListener("transitionend",outShop);
+	// 	/*注意这里男孩走一定要比背景滚动先完成,否则,先完成的画面滚动
+	// 	会触发shop时间,然后为男孩添加事件监听,这样男孩就会多次walk2
+	// 	*/
+	// 	boy.walk(2,0.5);
+	// 	roll(container,2,3);
+	// }
+	// var inShop = function(){
+	// 	/*	这里进出门共有4段动画,打印四次就很烦,
+	// 	所以把进出门分成两个函数
+	// 	结果发现每个函数里还有两段动画,不好监听*/
+	// 	console.log("in shop");
+	// 	container.removeEventListener("transitionend",inShop);
+	// 	boy.addEventListener("transitionend",outShop);
 
-		boy.enterShop();
-	}
-	var outShop = function(){
-		console.log("out shop");
+	// 	boy.enterShop();
+	// }
+	// var outShop = function(){
+	// 	console.log("out shop");
 
-		boy.removeEventListener("transitionend",outShop);
-		boy.addEventListener("transitionend",roll2);
+	// 	boy.removeEventListener("transitionend",outShop);
+	// 	boy.addEventListener("transitionend",roll2);
 
-		boy.exitShop();
-	}
-	var roll2 = function(){
+	// 	boy.exitShop();
+	// }
+	// var roll2 = function(){
 		
-		console.log("roll2")
+	// 	console.log("roll2")
 
-		boy.removeEventListener("transitionend",roll2);
-		container.addEventListener("transitionend",walk2);
+	// // 	boy.removeEventListener("transitionend",roll2);
+	// // 	container.addEventListener("transitionend",walk2);
 
-		// 和roll1里面的多行注释同理,这里应该先让背景动
-		boy.walk(2,0.15);
-		roll(container,3,2);
+	// // 	// 和roll1里面的多行注释同理,这里应该先让背景动
+	// // 	boy.walk(2,0.15);
+	// // 	roll(container,3,2);
 	
-	}
-	var walk2 = function(){
-		console.log("walk2");
+	// walk1();
+	// }
+	// var walk2 = function(){
+	// 	console.log("walk2");
 
-		container.removeEventListener("transitionend",walk2);
-	}
-	walk1();
+	// 	// container.removeEventListener("transitionend",walk2);
+	// }
 	// boy.addEventListener("transitionend",function(){
 	// 	// 滚动背景
 	// 	roll(container,2,3);
@@ -93,6 +94,11 @@ window.onload = function(){
 //获取男孩(面向对象)
 function getBoy(){
 	var boy = document.getElementById('boy');
+
+	var deffer = function(){
+		// boy.removeEventListener("transitionend",deffer);
+		return boy;
+	}
 	
 	// 男孩走路
 	// Param(运动时间，运动到地图的百分比)
@@ -107,8 +113,8 @@ function getBoy(){
 		var instance = toLeft - parseInt(currentLeft);
 		boy.style.transition = "transform "+time+"s linear";
 		boy.style.transform = "translate("+instance+"px)";
-		
-		return boy;
+
+		console.log(boy)
 	}
 	
 	// 男孩进商店
@@ -117,14 +123,15 @@ function getBoy(){
 		boy.style.transition = "all "+2+"s linear";
 		boy.style.transform = style+"scale(0.4)";
 		boy.style.opacity = 0;
-		
-		return boy;
+		boy.addEventListener("transitionend",deffer);		
 	}
 	// 男孩出商店
 	boy.exitShop = function(){
 		var style = boy.style.transform;
 		boy.className = "boy withFlower";
-		boy.style.transform = style+"scale(1)";
+		// console.log(style)
+		// boy.style.transform = style+"scale(1)";
+		// console.log(boy.style.transform)
 		boy.style.opacity = 1;
 
 		return boy;

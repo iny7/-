@@ -3,51 +3,99 @@
 		
 	}
 	100%{
-		left: -200px;
-		top: 50px;
+		left: -15%;
+		top: 5%;
 	}
 }
 @-webkit-keyframes smallCloud{
 	
 	100%{
-		left: 500px;
+		left: 40%;
 	}
 }
 @-webkit-keyframes bigCloud{
 	50%{
-		right: 200px;
+		right: 20%;
 	}
 	100%{
-		right: 0px;
+		right: 0%;
+	}
+}
+@-webkit-keyframes leftDoor{
+	50%{
+		left:-50%;
+	}
+	100%{
+		left: 0%;
+	}
+}
+@-webkit-keyframes rightDoor{
+	50%{
+		right: -50%;
+	}
+	100%{
+		right: 0%;
 	}
 }
 .sun{
 	position: absolute;
-	left: 850px;
-	top: 0;
-	width: 201px;
-	height: 201px;
+	left: 59%;
+	top: 0%;
+	width: 14%;
+	height: 22%;
 	background: url("../images/sun.png") no-repeat;
+	background-size: 100% 100%;
 	-webkit-animation: sun 20s 3s;
 	-webkit-animation-fill-mode: forwards;
 }
 .small{
 	position: absolute;
-	left: 220px;
-	top: 50px;
-	width: 180px;
-	height: 101px;
+	left: 15%;
+	top: 5.5%;
+	width: 12.5%;
+	height: 11%;
 	background: url("../images/cloud1.png") no-repeat;
+	background-size: 100% 100%;
 	-webkit-animation: smallCloud 8s infinite alternate;
 	-webkit-animation-fill-mode: forwards;
 }
 .big{
 	position: absolute;
-	right: 150px;
-	top: 40px;
-	width: 301px;
-	height: 140px;
+	right: 10.5%;
+	top: 6%;
+	width: 21%;
+	height: 15.5%;
 	background: url("../images/cloud2.png") no-repeat;
+	background-size: 100% 100%;
 	-webkit-animation: bigCloud 8s infinite alternate;
 	-webkit-animation-fill-mode: forwards;
+}
+.door{
+	position: relative;
+	overflow: hidden;
+	height: 23.5%;
+	width: 12.6%;
+	left: 52.2%;
+	top: 48.2%;
+	/*z-index: 10;*/
+	/*border: 1px solid blue;*/
+}
+.door>div{
+	position: absolute;
+	/*width: 91px;
+	  height: 231px;*/
+	height: 100%;
+	width: 50%;
+}
+/*非雪碧图的宽高可以直接上比例啊*/
+.leftdoor{
+	left: 0%;
+	background: url("../images/door-left.png") no-repeat;
+	background-size: 100% 100%;
+	
+}
+.rightdoor{
+	right: 0%;
+	background: url("../images/door-right.png") no-repeat;
+	background-size: 100% 100%;
 }

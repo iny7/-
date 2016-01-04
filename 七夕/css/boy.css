@@ -1,13 +1,13 @@
+/*雪碧图的缩放要用scale*/
 .boy{
 	position: absolute;
 	width: 150px;
 	height: 291px;
-	left: -10%;
+	left: 20%;
 	bottom: 15%;
 	border: 1px solid red;
 	background-image: url(../images/boy.png);
 	background-position: 0 -291px; 
-	transition: all 10s;
 	-webkit-animation: walk 1s 0.2s steps(1,start) infinite;
 	/*-webkit-animation-fill-mode: backwards;*/
 }

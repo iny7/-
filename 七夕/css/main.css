@@ -36,10 +36,24 @@ li{
 	background-image: url('../images/QixiA.png');
 }
 .container li:nth-child(2){
-	background-image: url('../images/QixiB-bright.png');	
+	background-image: url('../images/QixiB-dark.png');	
 	left:100%;
+	/*-webkit-animation: light 8s;*/
 }
+/*使用html元素进行预加载*/
+	 /*常见的都会no-repeat -9999px -9999px;*/
+/*.container li .preload{
+	background: url('../images/QixiB-bright.png');
+}*/
+/*.container li.bright{
+	background-image: url('../images/QixiB-bright.png');
+}*/
 .container li:last-child{
 	background-image: url('../images/QixiC.png');
 	left:200%;
+}
+@-webkit-keyframes light{
+	50%{
+		background-image: url('../images/QixiB-bright.png');
+	}
 }
