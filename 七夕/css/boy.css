@@ -7,7 +7,9 @@
 	bottom: 15%;
 	border: 1px solid red;
 	background-image: url(../images/boy.png);
-	background-position: 0 -291px; 
+	background-position: 0 -100%; 
+	/*哈哈 background-position也可以自适应*/
+	background-size: 700% 200%;
 	-webkit-animation: walk 1s 0.2s steps(1,start) infinite;
 	/*-webkit-animation-fill-mode: backwards;*/
 }
@@ -20,16 +22,16 @@
 		/*background-position: 0 291px; */
 	}
 	25%{
-		background-position: -600px 0;
+		background-position: -400% 0;
 	}
 	50%{
-		background-position: -300px -291px; 
+		background-position: -200% -100%; 
 	}
 	75%{
-		background-position: -150px -291px;
+		background-position: -100% -100%;
 	}
 	100%{
-		background-position: 0 -291px; 
+		background-position: 0 -100%; 
 	}
 }
 @-webkit-keyframes walkWithFlower{

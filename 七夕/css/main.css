@@ -12,6 +12,16 @@ li{
 	margin:0;
 	padding: 0;
 }
+li hr{
+	position: absolute;
+	border: 2px solid red;
+	width: 100%;
+	bottom: 20%;
+}
+.hr2{
+	border: 2px solid blue;
+	bottom: 52%;
+}
 #wrap{ 
 	position: absolute;
 	width:100%;

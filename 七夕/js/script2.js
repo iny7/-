@@ -1,8 +1,13 @@
 //疑问?jq的deferred对象是如何判断动画完成的呢??
 //有时间去读下源码
-//记得门\人都要自适应高度
+
+//可视区域的尺寸
 var WIDTH = document.documentElement.clientWidth;
 var HEIGHT = document.documentElement.clientHeight;
+
+//暂时看来和上面那个没差
+var WINDOW_HEIGHT = window.innerHeight;
+
 window.onload = function(){
 	// var width = document.documentElement.offsetWidth;
 	// console.log(WIDTH+'+'+HEIGHT);
@@ -14,7 +19,10 @@ window.onload = function(){
 	var boy = getBoy();
 	//获取门
 	var door = document.getElementById('door');	
-
+	window.onresize = function(){
+		// console.log("resize")
+		boy.reset();
+	}
 	/*	动画流程分析:
 		走路到页面的2/3的时候，主题页面开始滑动
 		走路到1/2的时候，到了商店门口
@@ -39,9 +47,9 @@ window.onload = function(){
 	见timeline第48行*/
 	/*多个参数的调用会降低函数的复用性,比如这里roll1和
 	roll2内部都使用了roll方法,但是roll的参数不同*/
-	timeline.add(walk1, 2000);
-	timeline.add(roll1, 2000);
-	timeline.add(shop, 3000);
+	// timeline.add(walk1, 2000);
+	timeline.add(roll1, 10);
+	// timeline.add(shop, 3000);
 	// timeline.add(roll2, 1000);
 
 	/*var bright = new Image();
@@ -81,19 +89,65 @@ window.onload = function(){
 //获取男孩(面向对象)
 function getBoy(){
 	var boy = document.getElementById('boy');
-	//根据窗口自适应大小
-	// var boy_height = parseInt(getComputedStyle(boy).height);
 	
-	boy.stylee = (function(){
+	//boy元素的初始高度(291)
+	var boy_height = parseInt(getComputedStyle(boy).height);	
 
-		//云的大小也要用百分比!
+	var preProportion;
+	var curProportion;
+
+	//男孩样式自适应
+	//突发奇想,能不能动态地改变雪碧图的整体background-size呢?
+	boy.reset = function(){
+		//窗口当前高度
+		var window_height = window.innerHeight;
+
+		console.log("************"+boy.style.transform);
 		//做自适应的时候注意boy中点所在的位置比例不会变!!
-		var proprotion = HEIGHT/901;
-		boy.style.bottom = "50%"
-		boy.style.transform += "scale("+proprotion+")";
+		var proportion = innerHeight/901;
+		// console.log("proportion : "+proportion)
+		
+		//动态计算男孩的bottom值
+		var boy_bottom = 0.36*window_height-0.5*boy_height+'px';
+		// console.log("boy_bottom : "+boy_bottom)
+		boy.style.bottom = boy_bottom;
+
+		//如果没有上个比例,那么上个比例等于计算得到的比例
+		if(!preProportion){					//test 计算第一次得到得到0.8 第二次得到0.4
+			preProportion = proportion;		//上次为0.8
+			console.log("in 1")
+			console.log("preProportion : "+ proportion)
+			boy.style.transform += "scale("+proportion+")";
+			// console.log(boy.style.transform);
+		}
+		//如果计算比例和上个比例不相等
+		if(proportion != preProportion){	//第一次相等不执行, 第二次0.4!=0.8 进
+			console.log("in 2")
+			//当前比例等于计算比例和上个比例的比	
+			curProportion = proportion/preProportion;	//当前为0.5
+			console.log("curProportion : "+ curProportion)
+			// 把计算比例当成上个比例
+			preProportion = proportion;					//上个为0.4
+			console.log("preProportion : "+ preProportion)
+			
+		}else{
+			curProportion = 1;
+		}
+		/*用=会改变其他函数产生的样式,直接用+=又会导致多个缩放累加,男孩直接缩小没了!
+			为此提出两种解决方法:
+			1. 对transform进行字符串操作,如已经有scale,则去掉后再加上新的(麻烦)
+			2. 通过计算(不同缩放比例)之间的比例,比如上一次是0.5 这一次是1 就追加一个2倍
+				这样通过多个scale的叠加,两个0.5就不会变成0.25 而是1,
+				//尝试了!一旦多次拖动,几百个scale伤不起啊!!
+		*/
+		boy.style.transform += "scale("+curProportion+")";
+		// console.log("============"+boy.style.transform);
 		return boy.style.transform;
-	}());
-	// console.log(boy.stylee)
+	};
+	boy.stylee = boy.reset();
+
+	// console.log(boy.getStyle)
+	// console.log("boy.stylee : "+boy.stylee)
 
 	// 男孩走路
 	// Param(运动时间，运动到地图的百分比)
