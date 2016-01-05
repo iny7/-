@@ -23,8 +23,11 @@ window.onload = function(){
 		console.log("resize")
 		WIDTH = document.documentElement.clientWidth;
 		HEIGHT = document.documentElement.clientHeight;
-		// boy.reset();
-		console.log("boy.stylee : "+boy.nowStyle())
+
+		/*boy.height = parseInt(getComputedStyle(boy).height);
+		console.log(boy.height)*/
+
+		// console.log("boy.stylee : "+boy.stylee())
 	}
 	/*	动画流程分析:
 		走路到页面的2/3的时候，主题页面开始滑动
@@ -32,13 +35,6 @@ window.onload = function(){
 		进出商店
 		走路到1/4到了桥边
 		走路到1/2到了桥上	*/
-	
-	/*实现动画的链式调用（而不是不断调时间）有几种方法
-	1.jq的defferd对象
-	2.jq的animate函数
-	3.用js写一个事件队列(时间轴)（粽子课程里有）
-	4.监听transitionend等定义好的事件
-	5.用js写实现观察者模式*/
 	
 	//现在要使用自定义的时间轴对象来完成动画了
 	var timeline = new TimeLine();
@@ -51,18 +47,14 @@ window.onload = function(){
 	/*多个参数的调用会降低函数的复用性,比如这里roll1和
 	roll2内部都使用了roll方法,但是roll的参数不同*/
 	
-	// timeline.add(test,1000);
-	// timeline.add(test,1000);
-	/*闭包测试
-	var h = boy.haha();
-	function test(){
-		h();
-	}*/
+	// var ff = boy.walk()
+	// timeline.add(ff,1000);
+	// timeline.add(ff,1000);
 
-	timeline.add(walk1, 2000);
+	timeline.add(walk1, 1000);
 	timeline.add(roll1, 2000);
-	// timeline.add(shop, 3000);
-	// timeline.add(roll2, 1000);
+	timeline.add(shop, 1000);
+	timeline.add(roll2, 1000);
 	
 
 	timeline.start();
@@ -70,13 +62,13 @@ window.onload = function(){
 	
 	/*通过规范函数的参数顺序(第一个必须为时间)来调用*/
 	function walk1(time){
-		console.log("********walk1********");
-		boy.walk(time/1000,0.3);
+		// console.log("********walk1********");
+		boy.walk(time/1000,0.6);
 	}
 	function roll1(time){
-		console.log("********roll1********");
-		boy.walk(time/1000,0.2);
-		// roll(container,time/1000,2);
+		// console.log("********roll1********");
+		boy.walk(time/1000,0.52);
+		roll(container,time/1000,2);
 	}
 	function shop(time){
 		console.log("********shop********");
@@ -89,72 +81,105 @@ window.onload = function(){
 	}
 	function roll2(time){
 		console.log("********roll2********")
-		boy.walk(time/1000,0.3);
-		// roll(container,time/1000,3);
+		boy.walk(time/1000,0.2);
+		roll(container,time/1000,3);
 	}
 	
 }
 
 //获取男孩(面向对象)
 function getBoy(){
-	var boy = function(){
-		return document.getElementById('boy');	
-	} 
-	//boy元素的初始高度(291)
-	// boy.height = parseInt(getComputedStyle(boy).height);
+	var boy = document.getElementById('boy');	
 
 	//男孩样式自适应
 	//第一版本:用js实现
 	//突发奇想,能不能动态地改变雪碧图的整体background-size呢?
 	//尝试了一下,是可以的,哈哈,繁琐的js代码,拜拜吧您!(js动态计算男孩宽高在上个版本)
 	
-	//获取男孩当前自设的transform样式
-	boy.nowStyle = function(){
+	
+	//错误示范: 这样定义属性是没有意义的,因为只是值传递而不是引用传递,所以要用函数动态获取
+	//boy.stylee = boy.style.transform;	
+	
+	//stylee里的getLeft为boy增加了这个属性,其实这一行有没有无所谓,加在这里便于以后查看
+	boy.left = 0;
+	
+	//boy元素的初始高度(291)
+	boy.height = parseInt(getComputedStyle(boy).height);
+	
+	//正确:用函数(对象)制作一个工具类
+	//该函数用于获取男孩运动需要的一些样式(left transform等)
+	boy.stylee = function(){
 		//当前left
+		var a = 0;
 		var style = function(){
 			return boy.style.transform;
-		};
+		}
+
+		style.getWidth = function(){
+			return parseInt(getComputedStyle(boy).width);
+		}
 		
-		style.left = parseInt(getComputedStyle(boy)['left']);
-		
+		style.test = function(){
+			console.log(a++)
+		}
 		style.getLeft = function(){
-			return this.left;
+			if(!boy.left){
+				return parseInt(getComputedStyle(boy)['left'])/WIDTH;
+			}
+			return boy.left;
 		}
 		style.setLeft = function(num){
-			this.left = num;
+			// console.log(a++)
+			boy.left = num;
 		}
 		return style;
 	}
 
-	//闭包测试
-	boy.haha = function(){
-		var a = 0;
-		var print = function(){
-			console.log(a++)
-		}
-		return print;
-	}
-	
 	// 男孩走路(把根据像素优化为根据百分比)
-	// Param(运动时间，运动地图的百分比)
-	boy.walk = function(time, where){
+	// Param(走路所花时间(秒)，走路到地图的哪个位置(0-1))
+	boy.walk = function(time, toWhere){
 
-		var fn = this.haha();
-		fn()
-		fn()
-		// var nStyle = haha;
+		// var a = 10; //和闭包函数的变量名相同,值不同,用来测试闭包是否成功
 
-		/*
+		/*这里为啥要用这样一个工具类呢?
+			第一 封装,不用每次都一大串parseInt、computed啥的
+			第二 没想好,过后再写,现在太激动了,先用util把其他功能实现了再来总结*/
+		var util = this.stylee();
+
+		//从哪儿来?(0-1)
+		var fromWhere = util.getLeft()
+
+		//男孩宽度(px)
+		var boyWidth = util.getWidth()
+		
+		//走多远?(是男孩宽度的百分之几?)
+		var distance = (toWhere-fromWhere)/(boyWidth/WIDTH)*100;
+
+		//别忘了把男孩的位置更新成最新的
+		util.setLeft(toWhere)
+
+		//动画
+		boy.style.transition = "transform "+time+"s linear";
+		boy.style.transform = util()+"translate("+distance+"%)";
+		
+		return this;
+
+		// transform的值如果设定的不合规范是会被忽略的
+		// boy.style.transform = "abc" //这样并不会改变transfrom的值
+
+		/* 
+
+		//把工具类里面的left用百分比表示如何?事实证明 完美!
 		//用地图的宽度乘百分比得到目标位置
 		var toLeft = where*WIDTH;
 		console.log("toLeft : "+toLeft)
 		
-		//这里又用到了getComputerdStyle获取当前呈现的所有style
-		var boyNowStyle = boy.nowStyle();
-		console.log("??? : "+boyNowStyle())
-		
-		var currentLeft = boyNowStyle.getLeft();
-		//发现使用百分比的translate不改变left值,但是使用像素又不好自适应
+		var currentLeft = boystylee.getLeft();
+		//发现使用百分比的translate不会改变left值,导致多次走路时候很不准确,但是使用像素又不好自适应
+
+		//解决这个问题的办法是把left保存在一个作用域为boy的变量里,每次运动前从这个变量里取left,
+		//运动后更新这个变量,上面非注释的部分使用的就是这个方法
+
 		// console.log(boy.style.left)
 		console.log("currentLeft : "+currentLeft)
 
@@ -168,13 +193,8 @@ function getBoy(){
 		// console.log("moveProportion : "+ moveProportion)
 
 		//变化
-		boyNowStyle.setLeft(toLeft)
+		boystylee.setLeft(toLeft)*/
 		
-		//动画
-		boy.style.transition = "transform "+time+"s linear";
-		// boy.style.transform = "translate(300%)"
-		boy.style.transform = boy.nowStyle()+"translate("+moveProportion+"%)";
-		console.log("!!! : "+boyNowStyle())*/
 	}
 	
 	/*改用时间轴后,就不用考虑同时触发的多个监听事件带来的干扰
@@ -185,14 +205,17 @@ function getBoy(){
 
 	// 男孩购物 = 原版(男孩进商店 + 男孩出商店)
 	boy.shop = function(time){
-
+		//男孩进店
 		boy.style.transition = "all "+time/2+"s linear";
-		boy.style.transform = boy.nowStyle()+"scale(0.4)";
-		// console.log(boy.style.transform)
+		//我定义的stylee方法返回的是 ((获取取当前transform的方法)的名称),这么写有点绕了,详见代码
+		boy.style.transform = boy.stylee()()+"scale(0.4)";
 		boy.style.opacity = 0;
+
+		//男孩出店
 		setTimeout(function(){
 			boy.className = "boy withFlower";
-			boy.style.transform = boy.nowStyle()+"scale(2.5)";
+			//因为scale的追加会互相影响,如果不用字符串将原先的剔除的话,就只能用2.5来还原成一倍( 2.5*0.4 = 1)
+			boy.style.transform = boy.stylee()()+"scale(2.5)";
 			boy.style.opacity = 1;
 		},time*1000/2);
 
