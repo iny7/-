@@ -6,7 +6,7 @@ var WIDTH = document.documentElement.clientWidth;
 var HEIGHT = document.documentElement.clientHeight;
 
 //暂时看来和上面那个没差
-var WINDOW_HEIGHT = window.innerHeight;
+// var WINDOW_HEIGHT = window.innerHeight;
 
 window.onload = function(){
 	// var width = document.documentElement.offsetWidth;
@@ -20,8 +20,11 @@ window.onload = function(){
 	//获取门
 	var door = document.getElementById('door');	
 	window.onresize = function(){
-		// console.log("resize")
-		boy.reset();
+		console.log("resize")
+		WIDTH = document.documentElement.clientWidth;
+		HEIGHT = document.documentElement.clientHeight;
+		// boy.reset();
+		console.log("boy.stylee : "+boy.nowStyle())
 	}
 	/*	动画流程分析:
 		走路到页面的2/3的时候，主题页面开始滑动
@@ -47,122 +50,131 @@ window.onload = function(){
 	见timeline第48行*/
 	/*多个参数的调用会降低函数的复用性,比如这里roll1和
 	roll2内部都使用了roll方法,但是roll的参数不同*/
-	// timeline.add(walk1, 2000);
-	timeline.add(roll1, 10);
+	
+	// timeline.add(test,1000);
+	// timeline.add(test,1000);
+	/*闭包测试
+	var h = boy.haha();
+	function test(){
+		h();
+	}*/
+
+	timeline.add(walk1, 2000);
+	timeline.add(roll1, 2000);
 	// timeline.add(shop, 3000);
 	// timeline.add(roll2, 1000);
+	
 
-	/*var bright = new Image();
-	bright.src = "images/QixiB-bright.png";
-	bright.onload = function(){
-		console.log("图片"+bright.src+"加载完成")
-	}*/
 	timeline.start();
+	
+	
 	/*通过规范函数的参数顺序(第一个必须为时间)来调用*/
 	function walk1(time){
-		console.log("walk1");
-		boy.walk(time/1000,0.5);
+		console.log("********walk1********");
+		boy.walk(time/1000,0.3);
 	}
 	function roll1(time){
-		console.log("roll1");
-		boy.walk(time/1000,0.52);
-		roll(container,time/1000,2);
+		console.log("********roll1********");
+		boy.walk(time/1000,0.2);
+		// roll(container,time/1000,2);
 	}
 	function shop(time){
-		console.log("shop");
+		console.log("********shop********");
 		//开灯
 		/*为啥开灯会卡呢???是因为换背景内存开销较大
 		所以不要让换背景和滚动背景同时进行(增加0.2s延迟)*/
 		openLight(container,time/1000)
-		
 		openDoor(door,time/1000)
 		boy.shop(time/1000);
 	}
 	function roll2(time){
-		console.log("roll2")
-		boy.walk(time/1000,0.15);
-		roll(container,time/1000,3);
+		console.log("********roll2********")
+		boy.walk(time/1000,0.3);
+		// roll(container,time/1000,3);
 	}
 	
 }
 
 //获取男孩(面向对象)
 function getBoy(){
-	var boy = document.getElementById('boy');
-	
+	var boy = function(){
+		return document.getElementById('boy');	
+	} 
 	//boy元素的初始高度(291)
-	var boy_height = parseInt(getComputedStyle(boy).height);	
-
-	var preProportion;
-	var curProportion;
+	// boy.height = parseInt(getComputedStyle(boy).height);
 
 	//男孩样式自适应
+	//第一版本:用js实现
 	//突发奇想,能不能动态地改变雪碧图的整体background-size呢?
-	boy.reset = function(){
-		//窗口当前高度
-		var window_height = window.innerHeight;
-
-		console.log("************"+boy.style.transform);
-		//做自适应的时候注意boy中点所在的位置比例不会变!!
-		var proportion = innerHeight/901;
-		// console.log("proportion : "+proportion)
+	//尝试了一下,是可以的,哈哈,繁琐的js代码,拜拜吧您!(js动态计算男孩宽高在上个版本)
+	
+	//获取男孩当前自设的transform样式
+	boy.nowStyle = function(){
+		//当前left
+		var style = function(){
+			return boy.style.transform;
+		};
 		
-		//动态计算男孩的bottom值
-		var boy_bottom = 0.36*window_height-0.5*boy_height+'px';
-		// console.log("boy_bottom : "+boy_bottom)
-		boy.style.bottom = boy_bottom;
-
-		//如果没有上个比例,那么上个比例等于计算得到的比例
-		if(!preProportion){					//test 计算第一次得到得到0.8 第二次得到0.4
-			preProportion = proportion;		//上次为0.8
-			console.log("in 1")
-			console.log("preProportion : "+ proportion)
-			boy.style.transform += "scale("+proportion+")";
-			// console.log(boy.style.transform);
+		style.left = parseInt(getComputedStyle(boy)['left']);
+		
+		style.getLeft = function(){
+			return this.left;
 		}
-		//如果计算比例和上个比例不相等
-		if(proportion != preProportion){	//第一次相等不执行, 第二次0.4!=0.8 进
-			console.log("in 2")
-			//当前比例等于计算比例和上个比例的比	
-			curProportion = proportion/preProportion;	//当前为0.5
-			console.log("curProportion : "+ curProportion)
-			// 把计算比例当成上个比例
-			preProportion = proportion;					//上个为0.4
-			console.log("preProportion : "+ preProportion)
-			
-		}else{
-			curProportion = 1;
+		style.setLeft = function(num){
+			this.left = num;
 		}
-		/*用=会改变其他函数产生的样式,直接用+=又会导致多个缩放累加,男孩直接缩小没了!
-			为此提出两种解决方法:
-			1. 对transform进行字符串操作,如已经有scale,则去掉后再加上新的(麻烦)
-			2. 通过计算(不同缩放比例)之间的比例,比如上一次是0.5 这一次是1 就追加一个2倍
-				这样通过多个scale的叠加,两个0.5就不会变成0.25 而是1,
-				//尝试了!一旦多次拖动,几百个scale伤不起啊!!
-		*/
-		boy.style.transform += "scale("+curProportion+")";
-		// console.log("============"+boy.style.transform);
-		return boy.style.transform;
-	};
-	boy.stylee = boy.reset();
+		return style;
+	}
 
-	// console.log(boy.getStyle)
-	// console.log("boy.stylee : "+boy.stylee)
-
-	// 男孩走路
-	// Param(运动时间，运动到地图的百分比)
+	//闭包测试
+	boy.haha = function(){
+		var a = 0;
+		var print = function(){
+			console.log(a++)
+		}
+		return print;
+	}
+	
+	// 男孩走路(把根据像素优化为根据百分比)
+	// Param(运动时间，运动地图的百分比)
 	boy.walk = function(time, where){
-		
+
+		var fn = this.haha();
+		fn()
+		fn()
+		// var nStyle = haha;
+
+		/*
 		//用地图的宽度乘百分比得到目标位置
 		var toLeft = where*WIDTH;
-		// console.log(toLeft)
+		console.log("toLeft : "+toLeft)
+		
 		//这里又用到了getComputerdStyle获取当前呈现的所有style
-		var currentLeft = getComputedStyle(boy)['left'];
-		//需要移动的距离为目标位置减去当前位置，注意当前位置是带'px'的，要进行转换
-		// console.log(currentLeft)
-		var instance = toLeft - parseInt(currentLeft);
+		var boyNowStyle = boy.nowStyle();
+		console.log("??? : "+boyNowStyle())
+		
+		var currentLeft = boyNowStyle.getLeft();
+		//发现使用百分比的translate不改变left值,但是使用像素又不好自适应
+		// console.log(boy.style.left)
+		console.log("currentLeft : "+currentLeft)
+
+		//取男孩当前的宽度
+		var boyWidth = parseInt(getComputedStyle(boy)['width']);
+		// console.log("boyWidth : " + boyWidth)
+		
+		//需要移动的比例(目标位置 - 当前位置)/男孩宽度
+		var moveProportion = (toLeft - currentLeft)/boyWidth*100;
+		console.log("和0.2差值为 : "+(toLeft-currentLeft))
+		// console.log("moveProportion : "+ moveProportion)
+
+		//变化
+		boyNowStyle.setLeft(toLeft)
+		
+		//动画
 		boy.style.transition = "transform "+time+"s linear";
-		boy.style.transform = boy.stylee+"translate("+instance+"px)";
+		// boy.style.transform = "translate(300%)"
+		boy.style.transform = boy.nowStyle()+"translate("+moveProportion+"%)";
+		console.log("!!! : "+boyNowStyle())*/
 	}
 	
 	/*改用时间轴后,就不用考虑同时触发的多个监听事件带来的干扰
@@ -173,14 +185,14 @@ function getBoy(){
 
 	// 男孩购物 = 原版(男孩进商店 + 男孩出商店)
 	boy.shop = function(time){
-		// console.log(style)
+
 		boy.style.transition = "all "+time/2+"s linear";
-		boy.style.transform = boy.stylee+"scale(0.4)";
+		boy.style.transform = boy.nowStyle()+"scale(0.4)";
 		// console.log(boy.style.transform)
 		boy.style.opacity = 0;
 		setTimeout(function(){
 			boy.className = "boy withFlower";
-			boy.style.transform = boy.stylee+"scale(1)";
+			boy.style.transform = boy.nowStyle()+"scale(2.5)";
 			boy.style.opacity = 1;
 		},time*1000/2);
 

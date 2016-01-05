@@ -1,20 +1,22 @@
 /*雪碧图的缩放要用scale*/
 .boy{
 	position: absolute;
-	width: 150px;
-	height: 291px;
+	width: 10.4%;
+	height: 32.2%;
 	left: 20%;
-	bottom: 15%;
+	bottom: 20%;
 	border: 1px solid red;
 	background-image: url(../images/boy.png);
 	background-position: 0 -100%; 
 	/*哈哈 background-position也可以自适应*/
 	background-size: 700% 200%;
+	/*哈哈哈哈哈哈哈哈,translate也能自适应(百分比为当前元素的倍数),css3何止强大,简直强大*/
+	/*transform: translate(100%);*/
 	-webkit-animation: walk 1s 0.2s steps(1,start) infinite;
 	/*-webkit-animation-fill-mode: backwards;*/
 }
 .withFlower{
-	background-position: -300px 0;
+	background-position: -200% 0;
 	-webkit-animation: walkWithFlower 1s steps(1,start) infinite;
 }
 @-webkit-keyframes walk{
@@ -39,16 +41,16 @@
 		/*background-position: -300px 0;*/
 	}
 	25%{
-		background-position: -900px 0;
+		background-position: -600% 0;
 	}
 	50%{
-		background-position: -450px 0px; 
+		background-position: -300% 0; 
 	}
 	75%{
-		background-position: -750px 0px;
+		background-position: -500% 0;
 	}
 	100%{
-		background-position: -300px 0;
+		background-position: -200% 0;
 	}
 }
 
