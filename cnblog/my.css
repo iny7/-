@@ -1,0 +1,17 @@
+#home{
+	border: 2px solid yellow;
+}
+#blogTitle{
+	border: 1px solid red;
+}
+#header{
+	background-color: #961;
+	/*border: 2px solid yellow;*/
+}
+#main{
+	background-color: #9ff;
+	/*border: 2px solid blue;*/
+}
+#footer{
+	background-color: #CCC;
+}
