@@ -8,6 +8,7 @@ http://images.cnblogs.com/cnblogs_com/iny7/775666/o_city.jpg
 /*reset*/
 body{
 	margin: 0;
+	font-family: "microsoft yahei";
 }
 ul{
 	margin: 0;
@@ -18,21 +19,16 @@ a{
 }
 #home{
 	position: relative;
-	width: 100%;
-	/*background: url("http://images.cnblogs.com/cnblogs_com/iny7/775666/o_banner.jpg");*/
-	/*background-size: cover;*/
-	/*background-attachment: fixed;*/
-
-	border: 5px solid blue;
+	/*width: 100%;*/
+	/*border: 5px solid blue;*/
 	/*overflow: hidden;*/
 }
+/**************header部分设计**************/
 #header{
 	position: relative;
 	height: 400px;
 	overflow: hidden;
 }
-
-/**************header部分设计**************/
 /*页头展示区*/
 #blogTitle{
 	position: absolute;
@@ -41,8 +37,8 @@ a{
 	top: 60px;
 	background-color: green;
 	color: #FFF;
-	/*background: url("http://images.cnblogs.com/cnblogs_com/iny7/775666/o_city.jpg");*/
 	background: url("city.jpg");
+	/*background: url("http://images.cnblogs.com/cnblogs_com/iny7/775666/o_city.jpg");*/
 	background-color: #900;
 	background-size: 100% 100%;
 	/*background-position: 50% 50%;*/
@@ -88,7 +84,7 @@ a{
 	background-color: #FFF;
 	opacity: 0.8;
 	color: #000;
-	transform: rotate(10deg);
+	transform: rotate(5deg);
 }
 /*导航区-状态条*/
 .blogStats{
@@ -104,8 +100,9 @@ a{
 	margin:0 auto;
 	background-color: #9ff;
 	min-height: 2000px;
-	border: 2px solid red;
+	/*border: 2px solid red;*/
 	background: url("banner.jpg") no-repeat;
+	/*background: url("http://images.cnblogs.com/cnblogs_com/iny7/775666/o_banner.jpg") no-repeat;*/
 	background-attachment: fixed;
 	background-size: cover;
 	overflow: hidden;
@@ -120,44 +117,86 @@ a{
 	width: 100%;
 	height: 100%;
 	background-color: #ccc;
-	opacity: 0.8;
+	opacity: 0.9;
 	z-index: 0;
 	/*IE*/
-	filter:alpha(opacity=60);
+	filter:alpha(opacity=0.9);
 }
 #mainContent{
-	float: right;
 	position: absolute;
-	border: 2px solid red;
+	/*border: 2px solid red;*/
 	border-radius: 5px;
-	top: 2%;
-	right: 15%;
-	width: 59%;
+	/*box-shadow: 0 0 4px #900 inset;*/
+	border: 1px solid #999;
+	padding: 20px;
+	margin-top: 2%;
+	right: 12%;
+	width: 60%;
 	z-index: 1;
 }
-#sideBar{
-	position: absolute;
-	border-radius: 5px;
-	border: 2px solid red;
-	width: 20%;
-	min-height: 600px;
-	margin: 2%;
-	color: #000;
-	z-index: 1;
-}
-
 .clear{
 	clear: both;
 }
+/*下次可以使用github的branch,比如之前七夕里的男孩walk如果用不同分支,就不用删除大量代码了!*/
 .day{
-
-	border: 2px solid red;
+	color: #000;
+	/*border: 1px solid #999;*/
+	border-radius: 5px;
 	margin:20px;
+	padding: 20px;
+	height: 200px;
 }
-.postTitle{
-	/*color: */
+.day:hover{
+	border: none;
+	box-shadow: 0 2px 8px #000;
+}
+.day a{
+	color: #000;
+}
+.dayTitle a{
+	float: right;
 	font-size: 20px;
+	line-height: 40px;
+}
+.postTitle a{
+	font-size: 24px;
+	line-height: 40px;
 	font-weight: bold;
+}
+.postCon{
+	text-indent: 2em;
+	line-height: 30px;
+	margin:10px;
+	/*border: 1px solid red;*/
+}
+.postCon .c_b_p_desc_readmore,.postDesc a{
+	margin-left: 20px;
+	color: #900;
+}
+.postDesc{
+	float: right;
+}
+/*******************左侧侧边栏******************/
+#sideBar{
+	/*position: absolute;*/
+	float: left;
+
+	border-radius: 5px;
+	border: 1px solid #999;
+	width: 20%;
+	min-height: 3200px;
+	overflow: hidden;
+	margin: 2%;
+	color: #000;
+	z-index: 100;
+}
+.catListTitle{
+	font-size: 20px;
+	line-height: 30px;
+	text-align: center;
+}
+#blog-news{
+	margin-left: 30px;
 }
 /*未完成*/
 /*#footer{
