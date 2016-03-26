@@ -1,0 +1,261 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+}
+a{
+	text-decoration: none;
+}
+/*页眉样式*/
+#header{
+	width: 100%;
+	height: 27px;
+	background: url(../images/top_bg.jpg);
+	background-color: #ccc;
+}
+.content{
+	margin: 0 auto;
+	width: 1000px;
+}
+ .content li{
+	list-style-image: url(../images/li_bg.gif);	/*新知识点*/
+	width: 80px;
+	line-height: 27px;
+	float: right;
+}
+ .content li a{
+	color: #8E8E8E;
+}
+ .content li a:hover{
+	color: #900;
+}
+
+/*中间部分样式表*/
+#wrap{
+	width: 1000px;
+	margin: 0 auto;
+}
+.logo{
+	height: 80px;
+}
+.logo .left{
+	float: left;
+}
+.logo .right{
+	float: right;
+	margin-top: 30px;
+	margin-right: 30px;
+	color: #8E8E8E;
+}
+.logo .right img{
+	vertical-align: middle;
+	/*新知识点，让图片位于水平中轴线上，从而使得文字居中*/
+}
+.logo .right .tel{
+	font-family: "Microsoft Yahei";
+	color: #900;
+	font-size: 20px;
+}
+.nav{
+	clear: both;
+	height: 40px;
+}
+.nav .nav_left,.nav_mid,.nav_right{
+	float: left;
+	height: 40px;
+}
+.nav .nav_left{
+	width: 10px;
+	background:url(../images/nav_left.jpg) no-repeat;
+}
+.nav .nav_mid{
+	overflow: hidden;
+	width: 980px;
+	margin: 0 auto;
+	background: url(../images/nav_bg.jpg) repeat-x;
+}
+.nav .nav_mid .nav_mid_left li{
+	float: left;
+	list-style: none;
+	width: 100px;
+	text-align: center;
+	line-height: 40px;
+}
+.nav .nav_mid .nav_mid_left a{
+	font-size: 16px;
+	color: #FFF;
+	font-family: "Microsoft Yahei";
+}
+.nav .nav_mid .nav_mid_left a:hover{
+	color: #FF0;
+}
+.nav .nav_mid .nav_mid_right{
+	float: right;
+}
+.nav .nav_mid .nav_mid_right input{
+ 	margin-top: 4px;
+ 	margin-right: 30px;
+ 	background: url(../images/search.jpg) no-repeat;
+ 	background-position: right center;
+ 	/*新知识点 可以用right center代替具体的像素*/
+ 	padding-right: 32px;
+ 	/*新知识点 使用padding防止文本框内的字体和背景图片重叠*/
+ 	background-color: #FFF;
+ 	text-indent: 8px;
+	height: 25px;
+	width: 190px;
+}
+.nav .nav_right{
+	width: 10px;
+	background: url(../images/nav_right.jpg) no-repeat;
+}
+.ad{
+	height: 310px;
+	overflow: hidden;
+}
+.ad li{
+	list-style: none;
+}
+/*信息展示区样式*/
+.info{
+	margin-top:10px;
+	overflow: hidden;/*之前没写这句 通过给info加边框发现它没撑起来
+	 导致wrap层也短了一截 从而footer不能和wrap分离*/
+}
+.info>div{
+	float: left;
+	height: 250px;
+}
+.info_left{
+	width: 340px;
+	border: 1px solid #E8E8E8;
+}
+.info_left_title{
+	height: 30px;
+	color: #777;
+	line-height: 30px;
+	border-bottom: 1px solid #ccc;
+}
+.info_left_title b{
+	margin-left: 10px;
+}
+.info_left_title a,.info_mid_course a{
+	float: right;
+	margin-right: 10px;
+	color: #777;
+}
+.info_left_title a:hover,.info_mid_course a:hover{
+	color: #900;
+}
+.info_left_activity{
+	margin-top: 8px;
+}
+.info_left_activity img{
+	float: left;
+	margin-left:6px;
+	margin-right: 8px;
+}
+.info_left_activity .text{
+	line-height: 22px;
+}
+.info_left_activity .text a,b{
+	color: #900;
+}
+.info_left_activity .text a:hover{
+	text-decoration: underline;
+}
+.info_left_article {
+	margin-top: 10px;
+}
+.info_left_article li{
+	margin-left: 16px;
+	margin-bottom: 8px;
+	line-height: 16px;
+	list-style-image: url(../images/list.jpg);
+}
+.info_left_article a{
+	font-size: 12px;
+	color: #000;
+}
+.info_left_article a:hover{
+	font-size: 12px;
+	color: #900;
+}
+.info_left_article span{
+	line-height: 17px;
+	font-size: 11px;
+	margin-right: 2px;
+	float: right;
+	color: #888;
+
+}
+.info_mid{
+	width: 410px;
+	margin: 0 7px;
+	border: 1px solid #E8E8E8;
+}
+.info_mid_course{
+	margin: 30px auto;
+	overflow: hidden;
+	border-top: 2px solid #CCC;
+	background-image: url(../images/product_type_bg.jpg);
+}
+.info_mid_course li{
+	list-style: none;
+	margin: 17px 13px;
+	font-size: 22px;
+	float: left;
+}
+.info_right{
+	width: 230px;
+}
+.info_right_top{
+	width: 100%;
+	border: 1px solid #E8E8E8;
+}
+.video_content{
+	margin: 8px auto;
+}
+.info_right_bottom{
+	width: 100%;
+
+	margin-top: 10px;
+	border: 1px solid #E8E8E8;
+}
+/*页脚样式*/
+#footer{
+	margin-top: 20px;
+	clear: both;
+	width: 100%;
+	overflow: hidden;
+	background-color: #E8E8E8;
+
+}
+.foot_wrap{
+	
+	overflow: hidden;
+	width: 1000px;
+	margin:0 auto;
+}
+.level1{
+	padding-top: 15px;
+}
+.level1 li{
+	float: left;
+	width:200px;
+	list-style: none;
+	text-align: center;
+	line-height: 30px;
+	/*新知识点 要写background-image就别加各种修饰 比如no-repeat否则浏览器不解析*/
+	background: url(../images/line.png) no-repeat right center;
+}
+.level1 a{
+	font-size: 20px;
+	color: #666;
+}
+.level1>li>a{
+	font-weight: bold;
+}
+.level2 a{
+	font-size: 16px;
+}
