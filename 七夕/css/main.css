@@ -6,28 +6,10 @@ ul{
 	list-style: none;
 	margin:0;
 	padding: 0;
-	left: -50%;
 }
 li{
 	margin:0;
 	padding: 0;
-}
-.line{
-	position: absolute;
-	border: 1px solid red;
-	height: 100%;
-	left: 50%;
-	z-index: 500;
-}
-li hr{
-	position: absolute;
-	border: 2px solid red;
-	width: 100%;
-	bottom: 20%;
-}
-.hr2{
-	border: 2px solid blue;
-	bottom: 52%;
 }
 #wrap{ 
 	position: absolute;
@@ -39,8 +21,6 @@ li hr{
 	position: relative;
 	width: 100%;
 	height: 100%;
-	/*transition: transform 5s .2s;*/
-	/*transform:translate(-200%);*/
 }
 .container li{
 	position: absolute;
@@ -55,22 +35,8 @@ li hr{
 .container li:nth-child(2){
 	background-image: url('../images/QixiB-dark.png');	
 	left:100%;
-	/*-webkit-animation: light 8s;*/
 }
-/*使用html元素进行预加载*/
-	 /*常见的都会no-repeat -9999px -9999px;*/
-/*.container li .preload{
-	background: url('../images/QixiB-bright.png');
-}*/
-/*.container li.bright{
-	background-image: url('../images/QixiB-bright.png');
-}*/
 .container li:last-child{
 	background-image: url('../images/QixiC.png');
 	left:200%;
-}
-@-webkit-keyframes light{
-	50%{
-		background-image: url('../images/QixiB-bright.png');
-	}
 }

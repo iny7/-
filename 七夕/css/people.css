@@ -1,0 +1,256 @@
+/*webkit*/
+@-webkit-keyframes walk{
+	25%{
+		background-position: -400% 0;
+	}
+	50%{
+		background-position: -200% -100%; 
+	}
+	75%{
+		background-position: -100% -100%;
+	}
+	100%{
+		background-position: 0 -100%; 
+	}
+}
+@-webkit-keyframes walkWithFlower{
+	25%{
+		background-position: -600% 0;
+	}
+	50%{
+		background-position: -300% 0; 
+	}
+	75%{
+		background-position: -500% 0;
+	}
+	100%{
+		background-position: -200% 0;
+	}
+}
+@-webkit-keyframes boyBack{
+	15%{
+		background-position: -100% -0%; 
+	}
+	30%{
+		background-position: -300% -100%;
+	}
+	50%{
+		background-position: 0% 0%;
+	}
+	65%{
+		background-position: -600% -100%;
+	}
+	80%{
+		background-position: -500% -100%;
+	}
+	100%{
+		background-position: -400% -100%; 
+	}
+}
+@-webkit-keyframes girlBack{
+	15%{
+		background-position: -100% 0%;
+	}
+	30%{
+		background-position: -600% 0%;
+	}
+	50%{
+		background-position: 0% 0%;
+	}
+	65%{
+		background-position: -200% 0%;
+	}
+	80%{
+		background-position: -300% 0%;
+	}
+	100%{
+		background-position: -400% 0%;
+	}
+}
+/*火狐*/
+@-moz-keyframes walk{
+	25%{
+		background-position: -400% 0;
+	}
+	50%{
+		background-position: -200% -100%; 
+	}
+	75%{
+		background-position: -100% -100%;
+	}
+	100%{
+		background-position: 0 -100%; 
+	}
+}
+@-moz-keyframes walkWithFlower{
+	25%{
+		background-position: -600% 0;
+	}
+	50%{
+		background-position: -300% 0; 
+	}
+	75%{
+		background-position: -500% 0;
+	}
+	100%{
+		background-position: -200% 0;
+	}
+}
+@-moz-keyframes boyBack{
+	15%{
+		background-position: -100% -0%; 
+	}
+	30%{
+		background-position: -300% -100%;
+	}
+	50%{
+		background-position: 0% 0%;
+	}
+	65%{
+		background-position: -600% -100%;
+	}
+	80%{
+		background-position: -500% -100%;
+	}
+	100%{
+		background-position: -400% -100%; 
+	}
+}
+@-moz-keyframes girlBack{
+	15%{
+		background-position: -100% 0%;
+	}
+	30%{
+		background-position: -600% 0%;
+	}
+	50%{
+		background-position: 0% 0%;
+	}
+	65%{
+		background-position: -200% 0%;
+	}
+	80%{
+		background-position: -300% 0%;
+	}
+	100%{
+		background-position: -400% 0%;
+	}
+}
+/*opera*/
+@-o-keyframes walk{
+	25%{
+		background-position: -400% 0;
+	}
+	50%{
+		background-position: -200% -100%; 
+	}
+	75%{
+		background-position: -100% -100%;
+	}
+	100%{
+		background-position: 0 -100%; 
+	}
+}
+@-o-keyframes walkWithFlower{
+	25%{
+		background-position: -600% 0;
+	}
+	50%{
+		background-position: -300% 0; 
+	}
+	75%{
+		background-position: -500% 0;
+	}
+	100%{
+		background-position: -200% 0;
+	}
+}
+@-o-keyframes boyBack{
+	15%{
+		background-position: -100% -0%; 
+	}
+	30%{
+		background-position: -300% -100%;
+	}
+	50%{
+		background-position: 0% 0%;
+	}
+	65%{
+		background-position: -600% -100%;
+	}
+	80%{
+		background-position: -500% -100%;
+	}
+	100%{
+		background-position: -400% -100%; 
+	}
+}
+@-o-keyframes girlBack{
+	15%{
+		background-position: -100% 0%;
+	}
+	30%{
+		background-position: -600% 0%;
+	}
+	50%{
+		background-position: 0% 0%;
+	}
+	65%{
+		background-position: -200% 0%;
+	}
+	80%{
+		background-position: -300% 0%;
+	}
+	100%{
+		background-position: -400% 0%;
+	}
+}
+.boy{
+	position: absolute;
+	width: 10.5%;
+	height: 32.2%;
+	left: 20%;
+	bottom: 20%;
+	background: url(../images/boy.png);
+	background-size: 700% 200%;
+	background-position: -100% 0%; 
+	-webkit-animation: walk 1s 0.2s steps(1,start) infinite;
+	-moz-animation: walk 1s 0.2s steps(1,start) infinite;
+	-o-animation: walk 1s 0.2s steps(1,start) infinite;
+	-webkit-animation-fill-mode: backwards;
+	-moz-animation-fill-mode: backwards;
+	-o-animation-fill-mode: backwards;
+}
+.withFlower{
+	background-position: -200% 0;
+	-webkit-animation: walkWithFlower 1s steps(1,start) infinite;
+	-moz-animation: walkWithFlower 1s steps(1,start) infinite;
+	-o-animation: walkWithFlower 1s steps(1,start) infinite;
+}
+.boyBack{
+	-webkit-animation: boyBack 2s 0.2s steps(1,start);
+	-moz-animation: boyBack 2s 0.2s steps(1,start);
+	-o-animation: boyBack 2s 0.2s steps(1,start);
+	-webkit-animation-fill-mode: forwards;
+	-moz-animation-fill-mode: forwards;
+	-o-animation-fill-mode: forwards;
+}
+.girlBack{
+	-webkit-animation: girlBack 2s 0.2s steps(1,start);
+	-moz-animation: girlBack 2s 0.2s steps(1,start);
+	-o-animation: girlBack 2s 0.2s steps(1,start);
+	-webkit-animation-fill-mode: forwards;
+	-moz-animation-fill-mode: forwards;
+	-o-animation-fill-mode: forwards;
+}
+.girl{
+	position: absolute;
+	width: 10.5%;
+	height: 32.2%;
+	left: 49%;
+	bottom: 29%;
+	background: url(../images/girl.png);
+	background-size: 700% 100%;
+	background-position: -100% 0%;
+	/*transition: all 1s;*/
+}

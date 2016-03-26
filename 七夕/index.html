@@ -1,42 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>七夕言情</title>
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<link rel="stylesheet" type="text/css" href="css/boy.css">
-	<link rel="stylesheet" type="text/css" href="css/others.css">
+    <meta charset="UTF-8">
+    <title>七夕言情</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/people.css">
+    <link rel="stylesheet" type="text/css" href="css/others.css">
 </head>
+
 <body>
-	<div id="wrap">
-		
-		<div id="container" class="container">
-		<div class="line"><!--为了在窗口拖动时正在运动的男孩也能走到精确的位置,在中间加了根线比划比划--></div>
-			<ul>
-				<li>
-					<div class="sun"></div>
-					<div class="small"></div>
-					<div class="big"></div>
-				</li>
-				<li>
-					<hr>
-					<hr class="hr2">
-					<!-- <img src="images/QixiB-bright.png" hidden> --><!--预加载策略1-->
-					<!-- <div class="preload"></div> --><!--预加载图片策略2-->
-					<div class="door" id="door">
-						<div class="leftdoor"></div>
-						<div class="rightdoor"></div>	
-					</div>
-				</li>
-				<li></li>
-			</ul>	
-		</div>
-		<div id="boy" class="boy"></div>
-		<div id="girl"></div>
-	</div>
-	<script type="text/javascript" src="js/timeline.js"></script>
-	<!-- <script type="text/javascript" src="js/script.js"></script> -->
-	<script type="text/javascript" src="js/script2.js"></script>
-	<!-- <script type="text/javascript" src="js/promise.js"></script> -->
+    <div id="wrap">
+        <ul id="container" class="container">
+            <li>
+                <div class="sun"></div>
+                <div class="small"></div>
+                <div class="big"></div>
+            </li>
+            <li>
+                <div id="door" class="door">
+                    <div class="leftdoor"></div>
+                    <div class="rightdoor"></div>
+                </div>
+                <div id="bird" class="bird"></div>
+            </li>
+            <li>
+                <div id="girl" class="girl"></div>
+                <div class="stars">
+                    <div class="star1"></div>
+                    <div class="star2"></div>
+                    <div class="star3"></div>
+                    <div class="star4"></div>
+                    <div class="star5"></div>
+                    <div id="star6" class="star6"></div>
+                </div>
+                <div id="box" class="box">
+                </div>
+            </li>
+        </ul>
+        <div id="boy" class="boy"></div>
+    </div>
+    <script type="text/javascript" src="js/timeline.js"></script>
+    <!-- <script type="text/javascript" src="js/script.js"></script> -->
+    <script type="text/javascript" src="js/script2.js"></script>
+    <!-- <script type="text/javascript" src="js/promise.js"></script> -->
 </body>
+
 </html>
