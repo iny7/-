@@ -1,7 +1,4 @@
 window.onload = function(){
-	var box = document.getElementById('wrap');
-	var pics = box.getElementsByTagName('img');
-	var location = getLocation(box.offsetWidth,box.offsetHeight-250,5,2);
 	
 	//通过!important来使hover生效以后 就不用进行事件绑定了
 	// for (var i = 0; i < pics.length; i++) {
@@ -12,13 +9,12 @@ window.onload = function(){
 		// 	this.style.transform = 'rotate('+(Math.random()*45)+'deg)';	
 		// }
 	// };
-	changeLocation(pics,location);
+	changeLocation();
 	
-	//这里发现取到的属性和页面中呈现的不一样(即取不到CSS样式表
-		//中的属性,会不会是因为样式表中是给img的属性 而不是每个具体的对象呢?)
-	console.log(pics[0].style);
-	console.log(pics[0].style.transform);
-	console.log(pics[0].style['transform']);
+	//这里发现取到的属性和页面中呈现的不一样(即取不到CSS样式表中的属性,会不会是因为样式表中是给img的属性 而不是每个具体的对象呢?)
+	// console.log(pics[0].style);
+	// console.log(pics[0].style.transform);
+	// console.log(pics[0].style['transform']);
 
 	//果不其然,obj.style只能获取内联样式 而下面这个函数才能获得当前显示的样式,
 	//可惜得到的transform是一个matrix矩阵 十分不易读
@@ -26,14 +22,17 @@ window.onload = function(){
 	//因为内联样式的权重大于外部引用的css文件 所以css文件中伪类hover的样式
 	//因为权重低于设置好的而无法实现 那怎么办呢?查阅资料后 发现还有一个比内联
 	//优先级还高的(在相应css的分号前加上!important)
-		var style = getComputedStyle(pics[0]);
-	console.log(style.transform)
+	// var style = getComputedStyle(pics[0]);
+	// console.log(style.transform)
 
 }
 
 
 //让图片数组根据坐标数组随机排列
-function changeLocation(arr_img,arr_loc){
+function changeLocation(){
+	var box = document.getElementById('wrap');
+	var arr_img = box.getElementsByTagName('img');
+	var arr_loc = getLocation(box.offsetWidth,box.offsetHeight-250,5,2);
 	//技巧,快速打乱数组
 	//sort 是对数组进行排序
 	//它是这样工作的。每次从数组里面挑选两个数 进行运算。
