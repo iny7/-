@@ -1,0 +1,42 @@
+body{
+	margin:0;
+	padding: 0;
+}
+ul{
+	list-style: none;
+	margin:0;
+	padding: 0;
+}
+li{
+	margin:0;
+	padding: 0;
+}
+#wrap{ 
+	position: absolute;
+	width:100%;
+	height: 100%;
+	overflow: hidden;
+}
+.container{
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.container li{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.container li:first-child{
+	background-image: url('../images/QixiA.png');
+}
+.container li:nth-child(2){
+	background-image: url('../images/QixiB-dark.png');	
+	left:100%;
+}
+.container li:last-child{
+	background-image: url('../images/QixiC.png');
+	left:200%;
+}

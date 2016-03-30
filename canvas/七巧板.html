@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas绘图--七巧板</title>
+	<style type="text/css">
+		#canvas{
+			display: block;
+			margin: 0 auto;
+			border: 2px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas">
+		您的浏览器不支持canvas
+	</canvas>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		var canvas = document.getElementById('canvas');
+		canvas.width = 400;
+		canvas.height = 400;
+
+		var arr = [
+				{p:[{x:0,y:0},		{x:400,y:0},
+					{x:200,y:200}],	color:"#caff67"},
+				{p:[{x:0,y:0},		{x:0,y:400},
+					{x:200,y:200}],	color:"#67becf"},
+				{p:[{x:0,y:400},	{x:100,y:300},
+					{x:200,y:400}],	color:"#ef3d61"},
+				{p:[{x:200,y:400},	{x:300,y:300},
+					{x:200,y:200},	{x:100,y:300}],color:"#f9f51a"},
+				{p:[{x:200,y:200},	{x:300,y:100},
+					{x:300,y:300}],	color:"#a594c0"},
+				{p:[{x:300,y:100},	{x:400,y:0},
+					{x:400,y:200},	{x:300,y:300}],color:"#fa8ccc"},
+				{p:[{x:200,y:400},	{x:400,y:200},
+					{x:400,y:400}],	color:"#f6ca29"}
+				];
+		var ctx = canvas.getContext("2d");
+
+		// for (var i = 0 ; i < arr.length; i++) {
+		// 	console.log(arr[i].p[0].x +","+ arr[i].p[0].y);
+		// 	for (var j = 1; j < arr[i].p.length-1; j++) {
+		// 		console.log(arr[i].p[j].x +","+ arr[i].p[j].y);
+		// 	}
+		// 	console.log(arr[i].color);
+		// }
+		for (var i = 0 ; i < arr.length; i++) {
+			ctx.beginPath();
+			ctx.moveTo(arr[i].p[0].x, arr[i].p[0].y);
+			for (var j = 1; j < arr[i].p.length; j++) {
+				ctx.lineTo(arr[i].p[j].x, arr[i].p[j].y);
+				console.log(arr[i].p[j].x +","+ arr[i].p[j].y);
+			}
+			ctx.closePath();
+			ctx.fillStyle = arr[i].color;
+			
+			ctx.strokeStyle = "#000";
+			ctx.lineWidth = "3";
+			ctx.stroke();
+			ctx.fill();
+		}
+		
+		
+		
+		
+
+	}
+</script>
+</html>

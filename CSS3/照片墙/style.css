@@ -1,0 +1,46 @@
+img{
+	margin:0;
+}
+body{
+	background-color:#D4B3B3;
+}
+h1{
+	font-family:Pointy;
+	display: block;
+	text-align:center;
+	margin:20px;
+}
+button{
+	display: block;
+	width: 80px;
+	margin:10px auto;
+	color: #900;
+	text-decoration: none;
+	background-color:transparent;
+	outline:none;
+	border:none;
+	font-size: 20px;
+}
+#wrap{
+	width: 800px;
+	height: 500px;
+	margin:10px auto;
+	left:-120px;
+	position: relative;
+}
+img{
+	position: absolute;
+	background-color: #FFF;
+	padding: 10px;
+	border: 1px solid #DDD;
+	transform: rotate(45deg);
+	-webkit-transform: rotate(20deg);
+	transition: transform .5s ease-out;
+}
+img:hover{
+	/* 这里用important强行提高css的权限 */
+	transform: rotate(0deg) !important;
+	transform: scale(1.3) !important;
+	box-shadow: 5px 5px 10px #CCC,-5px -5px 10px #CCC;
+	z-index: 10;
+}

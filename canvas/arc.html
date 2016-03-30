@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>圆和弧的绘制</title>
+	<style type="text/css">
+		#canvas{
+			display: block;
+			margin: 0 auto;
+			border:1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas">
+		您的浏览器不支持Canvas
+	</canvas>
+</body>
+	<script type="text/javascript">
+		 var canvas = document.getElementById('canvas');
+		 canvas.width = 700;
+		 canvas.height = 500;
+		 var ctx = canvas.getContext("2d");
+		 ctx.lineWidth = 2;
+		 ctx.fillStyle = "#ccc";
+		 for (var i = 0; i <= 6; i++) {
+		 	ctx.beginPath();
+		 	ctx.arc(50+100*i, 50, 40, 0, (i+1)*Math.PI/6);
+		 	ctx.closePath();
+		 	ctx.stroke();
+		 }
+		 for (var i = 0; i <= 6; i++) {
+		 	ctx.beginPath();
+		 	ctx.arc(50+100*i, 150, 40, 0, (i+1)*Math.PI/6);
+		 	ctx.stroke();
+		 }
+		 for (var i = 0; i <= 6; i++) {
+		 	ctx.beginPath();
+		 	ctx.arc(50+100*i, 250, 40, 0, (i+1)*Math.PI/6,true);
+		 	ctx.closePath();
+		 	ctx.stroke();
+		 }
+		 for (var i = 0; i <= 6; i++) {
+		 	ctx.beginPath();
+		 	ctx.arc(50+100*i, 350, 40, 0, (i+1)*Math.PI/6,true);
+		 	ctx.closePath();
+		 	ctx.stroke();
+		 	ctx.fill();
+		 }
+		 for (var i = 0; i <= 6; i++) {
+		 	ctx.beginPath();
+		 	ctx.arc(50+100*i, 450, 40, 0, (i+1)*Math.PI/6,true);
+		 	ctx.stroke();
+		 	ctx.fill();
+		 }
+		 
+		 
+
+	</script>
+</html>

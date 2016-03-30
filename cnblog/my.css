@@ -1,0 +1,233 @@
+/*
+可能使用的图片地址
+"http://images.cnblogs.com/cnblogs_com/iny7/775666/o_banner.jpg"
+"http://images.cnblogs.com/cnblogs_com/iny7/775666/o_pic01.jpg"
+"http://images.cnblogs.com/cnblogs_com/iny7/775666/o_pic02.jpg"
+"http://images.cnblogs.com/cnblogs_com/iny7/775666/o_pic03.jpg"
+http://images.cnblogs.com/cnblogs_com/iny7/775666/o_city.jpg
+*/
+/*简单reset*/
+body{
+	margin: 0;
+	font-family: "microsoft yahei";
+}
+ul{
+	margin: 0;
+	list-style: none;
+}
+a{
+	color: #000;
+	text-decoration: none;
+}
+#home{
+	position: relative;
+	/*width: 100%;*/
+	/*border: 5px solid blue;*/
+	/*overflow: hidden;*/
+}
+/**************header部分设计**************/
+#header{
+	position: relative;
+	height: 400px;
+	overflow: hidden;
+}
+/*页头展示区*/
+#blogTitle{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 60px;
+	background-color: green;
+	color: #FFF;
+	/*background: url("city.jpg");*/
+	background: url("http://images.cnblogs.com/cnblogs_com/iny7/775666/o_city.jpg");
+	background-color: #900;
+	background-size: 100% 100%;
+	/*background-position: 50% 50%;*/
+}
+#blogTitle h1{
+	font-size: 60px;
+}
+#blogTitle h2{
+	font-size: 40px;
+}
+.headermaintitle{
+	color: yellow;
+	margin-left: 50px;
+	
+}
+/*导航区*/
+#navigator{
+	position: fixed;
+	width: 100%;
+	height: 60px;
+	color: #FFF;
+	z-index: 1;
+
+}
+/*导航区-导航条*/
+#navList{
+	height: 60px;
+	width: 100%;
+	background: #000;
+
+}
+.menu{
+	float: left;
+	width: 100px;
+	font-size: 20px;
+	line-height: 60px;
+	text-align: center;
+	color: #FFF;
+	transition: all 0.3s;
+}
+/*这里可以加特技*/
+.menu:hover{
+	background-color: #FFF;
+	opacity: 0.8;
+	color: #000;
+	transform: rotate(5deg);
+}
+/*导航区-状态条*/
+.blogStats{
+	position: relative;
+	float: right;
+	width: 30%;
+	padding-right: 20px;
+	font-size: 20px;
+	text-align: right;
+	bottom: 41px;
+}
+/*******************中间区******************/
+#main{
+	position: relative;
+	min-height: 1200px;
+	/*border: 2px solid red;*/
+	/*background: url("banner.jpg") no-repeat;*/
+	background: url("http://images.cnblogs.com/cnblogs_com/iny7/775666/o_banner.jpg") no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	overflow: hidden;
+	z-index: 0;
+
+}
+/*因为不能改html,所以这里用css3的after选择器加蒙版*/
+#main:before{
+	position: absolute;
+	content: '';
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #ccc;
+	opacity: 0.9;
+	z-index: -1;
+	/*z-index: inherit;*/
+	/*IE*/
+	filter:alpha(opacity=0.9);
+}
+
+.clear{
+	clear: both;
+}
+/*******************左侧侧边栏******************/
+#sideBar{
+	position: absolute;
+	top: 0;
+	border-radius: 5px;
+	border: 2px solid #999;
+	/*border: 5px solid blue;*/
+	width: 18%;
+	padding: 20px;
+	min-height: 800px;
+	overflow: hidden;
+	margin: 2%;
+	color: #000;
+	/*z-index: -1;*/
+}
+.catListTitle{
+	font-size: 20px;
+	line-height: 30px;
+	text-align: center;
+}
+#blog-news{
+	margin-left: 30px;
+}
+#blog-calendar{
+	margin:20px;
+}
+#widget_my_zzk{
+	margin:0 auto;
+}
+#sidebar_search_box input[type="text"]{
+	width: 140px;
+	height: 30px;
+	font-size: 16px;
+	background-color: #DDD;
+	/*color: #;*/
+	border-radius: 5px;
+}
+#sidebar_search_box input[type="button"]{
+	width: 70px;
+	height: 35px;
+	font-size: 14px;
+	background-color: #000;
+	color: #FFF;
+	border-radius: 5px;
+}
+/*******************右侧内容区******************/
+#mainContent{
+	float: right;
+	border-radius: 5px;
+	border: 2px solid #999;
+	/*border: 2px solid red;*/
+	width: 60%;
+	padding: 40px;
+	margin: 2% 8%;
+}
+.day{
+	color: #000;
+	/*border: 1px solid #999;*/
+	border-radius: 5px;
+	margin:20px;
+	padding: 20px;
+	height: 200px;
+}
+.day:hover{
+	border: none;
+	box-shadow: 0 2px 8px #000;
+}
+.dayTitle a{
+	float: right;
+	font-size: 20px;
+	line-height: 40px;
+}
+.postTitle a{
+	font-size: 24px;
+	line-height: 40px;
+	font-weight: bold;
+}
+.postCon{
+	text-indent: 2em;
+	line-height: 30px;
+	margin:10px;
+	/*border: 1px solid red;*/
+}
+.postCon .c_b_p_desc_readmore,.postDesc a{
+	margin-left: 20px;
+	color: #900;
+}
+.postDesc{
+	float: right;
+}
+
+/*未完成*/
+/*下次可以使用github的branch,比如之前七夕里的男孩walk如果用不同分支,就不用删除大量代码了!*/
+#footer{
+	text-align:center;
+	line-height: 40px;
+	background-color: #000;
+	color: #FFF;
+	/*字间距*/
+	letter-spacing: 2px;
+	word-spacing: 4px;
+}

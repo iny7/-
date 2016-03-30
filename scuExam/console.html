@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>后台管理</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <style type="text/css">
+      /*html{
+        width:143%;
+        transform: scale(0.7);
+        transform-origin: 0% 0%;
+      }*/
+      body{
+        padding-top:70px;
+      }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header"><a href="#" class="navbar-brand">某管理系统</a></div>
+        <ul class="nav navbar-nav">
+            <li><a href="">首页</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" href="" data-toggle="dropdown">功能<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="">1</a></li>
+                <li><a href="">2</a></li>
+                <li><a href="">3</a></li>
+              </ul>
+            </li>
+            <li><a href="">帮助</a></li>
+        </ul>
+        <form class="navbar-form text-right">
+          <input type="text" class="form-control" placeholder="用户名...">
+          <input type="password" class="form-control" placeholder="密码...">
+          <button type="submit" class="btn btn-default">登陆</button>
+        </form>
+    </nav>
+
+    <section class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2">
+            
+          <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a>首页</a></li>
+            <li><a>信息建立</a></li>
+            <li><a>信息查询</a></li>
+            <li><a>信息管理</a></li>
+            <li><a>设置</a></li>
+            <li><a>帮助</a></li>
+          </ul>
+        </nav>
+
+        <div class="col-md-10">
+          <h2>管理控制台</h2>
+          <hr>
+          <p class="btns">
+            <button type="button" class="btn btn-default btn-lg">操作1</button>
+            <button type="button" class="btn btn-primary btn-lg">操作2</button>
+            <button type="button" class="btn btn-success btn-lg">操作3</button>
+            <button type="button" class="btn btn-info btn-lg">操作4</button>
+            <button type="button" class="btn btn-warning btn-lg">操作5</button>
+            <button type="button" class="btn btn-danger btn-lg">操作6</button>  
+          </p>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">最新提醒</h3>
+                </div>
+                <div class="panel-body">
+                  <p class="alert alert-success"><b>提示</b>您的订单（2014001）已经审批通过!</p>
+                  <p class="alert alert-danger"><b>提示</b>您的订单（2014002）被打回!</p>
+                  <p class="alert alert-warning"><b>提示</b>您的订单（2013001）客户付款延迟!</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">我的任务</h3>
+                </div>
+                <div class="panel-body">
+                  <ul class="nav nav-pills nav-stacked">
+                    <li><a href="#" class="alert alert-info">订单审批<span class="badge pull-right">42</span></a></li>
+                    <li><a href="#" class="alert alert-info">收款确认<span class="badge pull-right">20</span></a></li>
+                    <li><a href="#" class="alert alert-info">付款确认<span class="badge pull-right">10</span></a></li>
+                  </ul>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">最新订单</h3>
+                </div>
+                <div class="panel-body">
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>产品</th>
+                      <th>数量</th>
+                      <th>总金额</th>
+                      <th>业务员</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Apple</td>
+                      <td>10</td>
+                      <td>600</td>
+                      <td>小红</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>111</td>
+                      <td>222</td>
+                      <td>333</td>
+                      <td>4444</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>vvvaq</td>
+                      <td>aasd</td>
+                      <td>axs</td>
+                      <td>car</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <a href="#" class="btn btn-primary">查看详细>></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title">工程进度</h3>
+                </div>
+                <div class="panel-body">
+                  <h4><span class="label label-primary">水井挖掘工程</span></h4>
+                  <div class="progress">
+                    <div class="progress-bar" aria-valuenow="60" aria-valuemin="0" aria-valueman="100" style="width:60%;"></div>
+                  </div>
+                  <h4><span class="label label-danger">基建工程</span></h4>
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-danger" aria-valuenow="80" aria-valuemin="0" aria-valueman="100" style="width:80%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

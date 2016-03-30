@@ -1,0 +1,71 @@
+body{
+	/*overflow: hidden;*/
+	min-width: 1200px;
+	min-height: 800px;
+	background-color:#ccc;
+	font-family: "Microsoft Yahei";
+}
+.wrap{
+	/*撑起来*/
+	position:absolute;
+	width:1200px;
+	height:600px;
+	/*做居中*/
+	left:50%;
+	top:50%;
+	margin-left: -600px;
+	margin-top: -300px;
+	/*transform: translate(-50%, -50%);*/
+	/*设置背景*/
+	padding:10px;
+	background:#FFF url("img/bg.jpg") no-repeat;
+	background-position:center center;
+	/*设置边框和阴影*/
+	border-radius: 5px;
+	box-shadow:0 0 30px 3px #222;
+}
+.text{
+	position: absolute;
+	width: 400px;
+	height: 240px;
+	left: 100px;
+	top:90px;
+	font-size: 20px;
+}
+.wish{
+	width: 400px;
+	height: 240px;
+	background: url("img/caption.png") no-repeat;
+}
+.content{
+	text-indent: 2em;
+	/*技巧 刚开始未设置宽度时候，字体块的宽度是自适应的，
+	在动画产生的过程中，每行的字数会因为margin-left的变化
+	而改变，可以尝试去掉下面这行看看	*/
+	width: 400px;
+
+}
+.from{
+	text-align: right;
+}
+/*动画相关*/
+.text>div,.text>p{
+	margin-left: 40px;
+	opacity: 0;
+}
+.text-in>div,.text-in>p{
+	opacity: 1;
+	margin-left: 0;
+}
+.text-in .wish{
+	-webkit-transition: all 1s;
+}
+.text-in .to{
+	-webkit-transition: all 1s 0.5s;
+}
+.text-in .content{
+	-webkit-transition: all 1s 1s;
+}
+.text-in .from{
+	-webkit-transition: all 1s 1.5s;
+}
