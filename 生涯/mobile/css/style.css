@@ -13,8 +13,6 @@ ol,ul{list-style:none;margin:0px;padding:0px;}
 blockquote,q{quotes:none;}
 blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
 table{border-collapse:collapse;border-spacing:0;}
-/* start editing from here */
-a{text-decoration:none;}
 .txt-rt{text-align:right;}/* text align right */
 .txt-lt{text-align:left;}/* text align left */
 .txt-center{text-align:center;}/* text align center */
@@ -28,11 +26,6 @@ a{text-decoration:none;}
 nav.vertical ul li{	display:block;}/* vertical top-nav */
 nav.horizontal ul li{	display: inline-block;}/* horizontal top-nav */
 img{max-width:100%;}
-/*end reset*/
-body{
- font-family:Arial, Helvetica, sans-serif;
- background: #fff;
-}
 .wrap{
 	padding: 0px 10px;
 }
@@ -272,15 +265,6 @@ ul.list2 li img{
 ul.list1 li img:hover{
 	color: #6f8767;
 	
-}
-.info {
-   display: inline-block;
-   text-decoration: none;
-   padding:6px 10px;
-   background: #000;
-   color: #fff;
-   text-transform: uppercase;
-   font-size:10px;
 }
 .info:hover {
    background:#E74C3C;
@@ -642,6 +626,117 @@ div.span4 {
 	color:#fff;
 }
 
+
 /*end-footer**/
 
 	
+ul, ol, li{margin:0;padding:0;list-style:none;
+}
+
+a{text-decoration:none;
+}
+
+html, body{position:absolute;margin:0;padding:0;width:100%;height:100%;overflow:hidden;
+}
+
+body{font-family:"Microsoft Yahei";background:url(../images/banner.jpg) no-repeat;background-attachment:fixed;background-size:cover;background-position:center center;
+}
+
+.box{position:absolute;display:block;width:100%;height:100%;
+}
+
+.box li{position:absolute;display:block;width:100%;height:100%;min-height:100%;max-height:200%;padding:40px;box-sizing:border-box;overflow:hidden;
+}
+
+.box li:before{position:absolute;content:'';top:0;left:0;width:100%;height:100%;opacity:0.5;filter:alpha(opacity=0.5);z-index:-1;background:#616569;
+}
+
+.box li:nth-child(2n+1):before{background-color:#3A495D;
+}
+
+.fourth{top:100%;
+}
+
+.fifth{top:100%;left:100%;
+}
+
+.eighth{top:200%;left:100%;
+}
+
+.ninth{top:200%;left:200%;
+}
+
+.info{width:300px;text-align:center;margin:10% auto;font-size:24px;color:#CCC;
+}
+
+.img-box{position:relative;margin:0 auto;height:260px;width:260px;
+}
+
+.img{position:absolute;margin:50%;transform:translateX(-50%) translateY(-50%);width:95%;height:95%;border-radius:50%;background-size:cover;
+}
+
+.img-border{position:absolute;top:0;width:100%;height:100%;background-image:linear-gradient(to top left, #7E7E84, #000);border-radius:50%;transition:all 3s linear;box-shadow:0 0 20px 2px #7E7E84,0 0 20px -2px #7E7E84;box-sizing:border-box;
+}
+
+.img-mask{position:absolute;width:100%;height:100%;border-radius:50%;top:0;z-index:1;background-color:#333;transition:all 1.5s;opacity:0;padding-top:35%;box-sizing:border-box;color:#FFF;font-size:24px;
+}
+
+.img-box:hover .img-border{transform:rotate(1080deg);
+}
+
+.img-box:hover .img-mask{opacity:0.3;
+}
+
+.first button{border:none;background:#333;color:#eee;font-size:18px;border-radius:5px;padding:12px 24px;
+}
+
+.info .career{line-height:50px;border-top:2px solid #FFF;
+}
+
+.page-title{font-size:30px;color:#DDD;font-weight:bold;
+}
+
+.card-group{display:flex;margin:60px;flex-wrap:wrap;justify-content:center;
+}
+
+.card h3{font-size:24px;font-weight:bold;
+}
+
+.card{box-sizing:border-box;text-align:center;line-height:30px;font-size:20px;width:33%;padding:30px;color:#FFF;border:1px solid #FFF;background:rgba(0,0,0,0.3);text-overflow:ellipsis;
+}
+
+.card:nth-child(2n){background:rgba(0,0,0,0.6);
+}
+
+.project{text-indent:2em;font-size:20px;color:#EEE;margin:40px;height:80%;
+}
+
+.project .show-box{float:right;position:relative;margin:10px;margin-bottom:30px;height:45%;width:400px;
+}
+
+.show-box img{position:absolute;width:80%;height:65%;background-color:#FFF;padding:5px;border:1px solid #DDD;transition:transform .5s ease-out;
+}
+
+.show-box img:first-child{top:-5%;left:0%;transform:rotate(-5deg);
+}
+
+.show-box img:nth-child(2){transform:rotate(5deg);top:15%;left:10%;
+}
+
+.show-box img:last-child{transform:rotate(10deg);top:31%;left:22%;
+}
+
+.show-box img:hover{transform:scale(1.2);box-shadow:5px 5px 10px #CCC,-5px -5px 10px #CCC;z-index:10;
+}
+
+.demos{border:2px solid red;height:80%;
+}
+
+.demos-box{position:relative;height:100%;border:2px solid blue;
+}
+
+.demos-box figure{position:absolute;margin:0 auto;
+}
+
+.feeling{border:2px solid red;height:80%;
+}
