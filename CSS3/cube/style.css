@@ -1,0 +1,42 @@
+.space{
+	width:600px;
+	height:400px;
+	border:2px solid red;
+	perspective: 800px;
+	margin:20px auto;
+}
+.box{
+	position:relative;
+	width:260px;
+	height:260px;
+	margin:70px auto;
+	border:2px solid blue;
+}
+.perspective{
+	position:absolute;
+	height:100%;
+	width:100%;
+	border:2px solid #900;
+	transform-style:preserve-3d;
+	backface-visibility:hidden;
+}
+.p1{
+	/* background-color:#023019; */
+}
+.p2{
+	transform:rotateY(90deg);
+	transform-origin:0% center;
+	background-color:#798781;
+}
+.p3{
+	background-color:#187842;
+}
+.p4{
+	background-color:#148472;
+}
+.p5{
+	background-color:#981987;
+}
+.p6{
+	background-color:#FA1293;
+}
