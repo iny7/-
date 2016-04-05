@@ -1,3 +1,7 @@
+@font-face {
+	font-family:Pointy;
+	src:url(font/Pointy.ttf);
+}
 img{
 	margin:0;
 }
@@ -15,6 +19,8 @@ button{
 	width: 80px;
 	margin:10px auto;
 	color: #900;
+	text-shadow:1px 1px #ccc;
+	font-family:'Microsoft Yahei';
 	text-decoration: none;
 	background-color:transparent;
 	outline:none;
