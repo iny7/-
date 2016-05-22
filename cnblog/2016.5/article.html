@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8" />
+    <title>React中input checked的使用 - iny7 - 博客园</title>
+    <link type="text/css" rel="stylesheet" href="http://www.cnblogs.com/bundles/blog-common.css?v=8F6jO9aWZhOryqKsIFGUkSbXpyPVKDwgWwvpie3eJis1" />
+    <link type="text/css" rel="stylesheet" href="http://www.cnblogs.com/blog/customcss/262115.css?v=JiGXuhu2uBDjNfpuKtCIZhNt7uM%3d" />
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/iny7/rss" />
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/iny7/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/iny7/wlwmanifest.xml" />
+    <script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    var currentBlogApp = 'iny7',
+        cb_enable_mathjax = false;
+    </script>
+    <script src="http://common.cnblogs.com/bundles/blog-common.js?v=ceHMEpeJXcR_f7TCJnXeZQRG1UsC0_cpwDJRs_oVInY1" type="text/javascript"></script>
+    <link rel="stylesheet" href="my.css">
+</head>
+
+<body>
+    <a name="top"></a>
+    <!--done-->
+    <div id="home">
+        <div id="header">
+            <div id="blogTitle">
+                <a id="lnkBlogLogo" href="http://www.cnblogs.com/iny7/"><img id="blogLogo" src="http://common.cnblogs.com/Skins/custom/images/logo.gif" alt="返回主页" /></a>
+                <!--done-->
+                <h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/iny7/">iny7</a></h1>
+                <h2></h2>
+            </div>
+            <!--end: blogTitle 博客的标题和副标题 -->
+            <div id="navigator">
+                <ul id="navList">
+                    <li><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+                    <li><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/iny7/">首页</a></li>
+                    <li><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+                    <li><a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://msg.cnblogs.com/send/iny7">联系</a></li>
+                    <li><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/iny7/rss">订阅</a>
+                        <!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/iny7/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+                    <li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+                </ul>
+                <div class="blogStats">
+                    <span id="stats_post_count">随笔 - 11&nbsp; </span>
+                    <span id="stats_article_count">文章 - 0&nbsp; </span>
+                    <span id="stats-comment_count">评论 - 0</span>
+                </div>
+                <!--end: blogStats -->
+            </div>
+            <!--end: navigator 博客导航栏 -->
+        </div>
+        <!--end: header 头部 -->
+        <div id="main">
+            <div id="mainContent">
+                <div class="forFlow">
+                    <div id="post_detail">
+                        <!--done-->
+                        <div id="topics">
+                            <div class="post">
+                                <h1 class="postTitle">
+            <a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/iny7/p/5489231.html">React中input checked的使用</a>
+        </h1>
+                                <div class="clear"></div>
+                                <div class="postBody">
+                                    <div id="cnblogs_post_body">
+                                        <p>用React写一个小组件的时候遇到了一个问题,记录下来,暂时的html代码如下</p>
+                                        <div class="cnblogs_code">
+                                            <pre>&lt;div className="switch"&gt;
+        &lt;input type="radio" name="switch" id="on" checked/&gt;
+        &lt;label htmlFor="on"&gt;on&lt;/label&gt; <br />        &lt;input type="radio" name="switch" id="off"/&gt;
+        &lt;label htmlFor="off"&gt;off&lt;/label&gt;
+&lt;/div&gt;</pre>
+                                        </div>
+                                        <p>运行时会waring,主要内容为</p>
+                                        <div class="cnblogs_code">
+                                            <pre>You provided a `checked` prop to a form field without an `onChange` handler.</pre>
+                                        </div>
+                                        <p>并且点击两个label都没有反应了,仔细查看一下报错信息,大致是说默认checked的单选框如果没有绑定onChange事件,就会被框架渲染为只读(read-only),解决办法</p>
+                                        <p>1: 为每个input都添加onChange事件,对按钮改变事件做出响应,这样React就不会把它渲染为只读控件</p>
+                                        <p>2: 使用React提供的方式设置默认值 ,即&nbsp;defaultChecked={true} (显然这个更友好)</p>
+                                        <p>&nbsp;</p>
+                                        <p>P.S. 在写CSS的时候遇到了两个label之间始终有间隙的问题,改display:inline; 改margin/padding都没用 ,最后还是在公司前辈小张哥的提醒下才想到了是元素节点之间默认渲染的文本节点的字体大小引发的问题,解决办法也有两个</p>
+                                        <p>1.在两个label之间用注释节点填充</p>
+                                        <div class="cnblogs_code">
+                                            <pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">className</span><span style="color: #0000ff;">="switch"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="radio"</span><span style="color: #ff0000;"> name</span><span style="color: #0000ff;">="switch"</span><span style="color: #ff0000;"> id</span><span style="color: #0000ff;">="on"</span><span style="color: #ff0000;"> checked</span><span style="color: #0000ff;">/&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="radio"</span><span style="color: #ff0000;"> name</span><span style="color: #0000ff;">="switch"</span><span style="color: #ff0000;"> id</span><span style="color: #0000ff;">="off"</span><span style="color: #0000ff;">/&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">label </span><span style="color: #ff0000;">htmlFor</span><span style="color: #0000ff;">="on"</span><span style="color: #0000ff;">&gt;</span>on<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">label</span><span style="color: #0000ff;">&gt;</span><span style="color: #008000;">&lt;!--</span>
+         <span style="color: #008000;">--&gt;</span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">label </span><span style="color: #ff0000;">htmlFor</span><span style="color: #0000ff;">="off"</span><span style="color: #0000ff;">&gt;</span>off<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">label</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>    </pre>
+                                        </div>
+                                        <p>2.将父元素的font-size置为0,再在需要的位置重新设置font-size,即</p>
+                                        <div class="cnblogs_code">
+                                            <pre><span style="color: #800000;">.switch</span>{<span style="color: #ff0000;">
+    font-size</span>:<span style="color: #0000ff;"> 0</span>;
+}<span style="color: #800000;">
+.switch label</span>{<span style="color: #ff0000;">
+    font-size</span>:<span style="color: #0000ff;"> 20px</span>;
+}</pre>
+                                        </div>
+                                        <p>　　以前总觉得博客要写一些高大上的东西，而自己技术水平又达不到，所以总是没东西可写。像文本节点这个问题其实以前也遇到过，但是当时觉得是个小问题而已，没必要专门写一篇博客，结果这次遇到一时就没想起来，还是耽误了一些时间，看来以后遇到问题还是应该不分大小，多记录总结一下才对。</p>
+                                        <p>说了这么多,来看一看这个小东西吧<img src="http://images2015.cnblogs.com/blog/873121/201605/873121-20160513141322796-55250114.png" alt="" width="168" height="81" />&nbsp;<img src="http://images2015.cnblogs.com/blog/873121/201605/873121-20160513141245671-227300207.png" alt="" width="167" height="84" /></p>
+                                        <p>另外，觉得组件的设计挺好玩的，React还没实现好，先把html代码贴出来分享给大家，有兴趣可以关注我的Github https://github.com/iny7&nbsp;哟</p>
+                                        <div class="cnblogs_code">
+                                            <pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">doctype html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html </span><span style="color: #ff0000;">lang</span><span style="color: #0000ff;">="en"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">charset</span><span style="color: #0000ff;">="UTF-8"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>Switch<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">style</span><span style="color: #0000ff;">&gt;</span><span style="background-color: #f5f5f5; color: #800000;">
+        .switch</span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            width</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 100px</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            height</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 40px</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            line-height</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 40px</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            box-shadow</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 1px 1px 2px #F60,1px 1px #CCC inset</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            perspective</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;">400px</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            transform-style</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> preserve-3d</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            transform-origin</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 50% 100%</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            transform</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> rotateX(40deg)</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            border-radius</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 5px</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            background-color</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> #AF6432</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            font-size</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 0</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+        <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+        .switch::after</span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            content</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;">''</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            clear</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> both</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+        <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+        .switch input</span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            display</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> none</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+        <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+        .switch label</span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            display</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> inline-block</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            background-color</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> #CCC</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            height</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 100%</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            width</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;">50%</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            font-size</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 20px</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            font-weight</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> bold</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+            <span style="background-color: #f5f5f5; color: #008000;">/*</span><span style="background-color: #f5f5f5; color: #008000;">line-height: 30px;</span><span style="background-color: #f5f5f5; color: #008000;">*/</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            text-align</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> center</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            transform-style</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> preserve-3d</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+            
+            <span style="background-color: #f5f5f5; color: #008000;">/*</span><span style="background-color: #f5f5f5; color: #008000;">文字不可选择</span><span style="background-color: #f5f5f5; color: #008000;">*/</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            -moz-user-select</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> none</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;"> 
+            -webkit-user-select</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> none</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">  
+            -ms-user-select</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> none</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;"> 
+            -khtml-user-select</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> none</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;"> 
+            user-select</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> none</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+        <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+        .switch input:checked+label</span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            background-color</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> #F60</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+        <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+        .switch label:first-of-type</span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            border-radius</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 5px 0 0 5px</span><span style="background-color: #f5f5f5; color: #000000;">;</span> 
+        <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+        .switch label:last-of-type</span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            border-radius</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 0 5px 5px 0</span><span style="background-color: #f5f5f5; color: #000000;">;</span> 
+        <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+
+        .switch input:checked+label:first-of-type</span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            width</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;">49%</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            margin-left</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 1%</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            transform-origin</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 100% 50%</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            transform</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> rotateY(12deg)</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+        <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+        .switch input:checked+label:last-of-type</span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            
+            transform-origin</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 0% 50%</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            transform</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> rotateY(-12deg)</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+        <span style="background-color: #f5f5f5; color: #000000;">}</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">style</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="switch"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="radio"</span><span style="color: #ff0000;"> name</span><span style="color: #0000ff;">="test"</span><span style="color: #ff0000;"> id</span><span style="color: #0000ff;">="on"</span><span style="color: #ff0000;"> checked</span><span style="color: #0000ff;">/&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">label </span><span style="color: #ff0000;">for</span><span style="color: #0000ff;">="on"</span><span style="color: #0000ff;">&gt;</span>on<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">label</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="radio"</span><span style="color: #ff0000;"> name</span><span style="color: #0000ff;">="test"</span><span style="color: #ff0000;"> id</span><span style="color: #0000ff;">="off"</span> <span style="color: #0000ff;">/&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">label </span><span style="color: #ff0000;">for</span><span style="color: #0000ff;">="off"</span><span style="color: #0000ff;">&gt;</span>off<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">label</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre>
+                                        </div>
+                                        <p>&nbsp;</p>
+                                    </div>
+                                    <div id="MySignature"></div>
+                                    <div class="clear"></div>
+                                    <div id="blog_post_info_block">
+                                        <div id="BlogPostCategory"></div>
+                                        <div id="EntryTag"></div>
+                                        <div id="blog_post_info">
+                                        </div>
+                                        <div class="clear"></div>
+                                        <div id="post_next_prev"></div>
+                                    </div>
+                                </div>
+                                <div class="postDesc">posted @ <span id="post-date">2016-05-13 14:09</span> <a href='http://www.cnblogs.com/iny7/'>iny7</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>) <a href="http://i.cnblogs.com/EditPosts.aspx?postid=5489231" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(5489231);return false;">收藏</a></div>
+                            </div>
+                            <script type="text/javascript">
+                            var allowComments = true,
+                                isLogined = true,
+                                cb_blogId = 262115,
+                                cb_entryId = 5489231,
+                                cb_blogApp = currentBlogApp,
+                                cb_blogUserGuid = 'f0c7221b-e5b2-e511-9fc1-ac853d9f53cc',
+                                cb_entryCreatedDate = '2016/5/13 14:09:00';
+                            loadViewCount(cb_entryId);
+                            </script>
+                        </div>
+                        <!--end: topics 文章、评论容器-->
+                    </div>
+                    <a name="!comments"></a>
+                    <div id="blog-comments-placeholder"></div>
+                    <script type="text/javascript">
+                    var commentManager = new blogCommentManager();
+                    commentManager.renderComments(0);
+                    </script>
+                    <div id='comment_form' class='commentform'>
+                        <a name='commentform'></a>
+                        <div id='divCommentShow'></div>
+                        <div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+                        <div id='comment_form_container'></div>
+                        <div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+                        <div id='ad_t2'></div>
+                        <div id='opt_under_post'></div>
+                        <div id='ad_c1' class='c_ad_block'></div>
+                        <div id='under_post_news'></div>
+                        <div id='ad_c2' class='c_ad_block'></div>
+                        <div id='under_post_kb'></div>
+                        <div id='HistoryToday' class='c_ad_block'></div>
+                        <script type='text/javascript'>
+                        $(function() {
+                            setTimeout(function() {
+                                incrementViewCount(cb_entryId);
+                            }, 50);
+                            deliverAdT2();
+                            deliverAdC1();
+                            deliverAdC2();
+                            loadNewsAndKb();
+                            loadBlogSignature();
+                            LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+                            GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+                            loadOptUnderPost();
+                            GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+                        });
+                        </script>
+                    </div>
+                </div>
+                <!--end: forFlow -->
+            </div>
+            <!--end: mainContent 主体内容容器-->
+            <div id="sideBar">
+                <div id="sideBarMain">
+                    <div id="blog-calendar" style="display:none"></div>
+                    <script type="text/javascript">
+                    loadBlogDefaultCalendar();
+                    </script>
+                    <div id="leftcontentcontainer">
+                        <div id="blog-sidecolumn"></div>
+                        <script type="text/javascript">
+                        loadBlogSideColumn();
+                        </script>
+                    </div>
+                </div>
+                <!--end: sideBarMain -->
+            </div>
+            <!--end: sideBar 侧边栏容器 -->
+            <div class="clear"></div>
+        </div>
+        <!--end: main -->
+        <div class="clear"></div>
+        <div id="footer">
+            <!--done-->
+            Copyright &copy;2016 iny7
+        </div>
+        <!--end: footer -->
+    </div>
+    <!--end: home 自定义的最大容器 -->
+</body>
+
+</html>

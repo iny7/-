@@ -84,6 +84,7 @@ a{
 /*这里可以加特技*/
 .menu:hover{
 	background-color: #FFF;
+        border-radius:3px;
 	opacity: 0.8;
 	color: #000;
 	transform: rotate(5deg);
